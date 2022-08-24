@@ -56,6 +56,7 @@ export class CameraComponent implements AfterViewInit {
     }
     // this.drawImageToCanvas(this.video.nativeElement);
     // this.captures.push(this.canvas.nativeElement.toDataURL("image/png"));
+    console.log(this.captures);
      this.isCaptured = true;
   }
 
@@ -76,8 +77,8 @@ export class CameraComponent implements AfterViewInit {
       .drawImage(image, 0, 0, this.WIDTH, this.HEIGHT);
   }
   eliminarFoto(idx: number) {
-    var eliminarImagen =this.captures.filter(item => item !== this.captures[idx]);
-    this.captures = eliminarImagen;
+    var ImagenesActuales =this.captures.filter(item => item !== this.captures[idx]);
+    this.captures = ImagenesActuales;
     this.isCaptured = false;
     console.log(this.captures);
   }
@@ -87,15 +88,32 @@ export class CameraComponent implements AfterViewInit {
   
   }
 
+  eliminarTodo(){
+    this.captures = [];
+    this.isCaptured = false;
+  }
   
 
-
-
-
-
-
-
-
-
-
+  procesar(){
+    if (this.captures.length <= 0) {
+       alert("No hay fotos para procesar");
+    
+     }else if (this.inputText == "") {
+      alert("No se especifica la seña para procesar");
+    }else{
+      alert("Procesando..." + this.inputText);
+    }
+    
+  }  
 }
+
+
+
+
+
+
+
+
+
+
+

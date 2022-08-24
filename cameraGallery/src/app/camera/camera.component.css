@@ -1,4 +1,43 @@
-.snap-container {
+
+
+  .grid{
+    display: grid;
+    width: 100%;
+    grid-template-areas: "nav input camera camera"
+                          "nav input camera camera"
+                          "nav lista lista lista"
+                          "nav  contenedor contenedor contenedor";
+    grid-gap: 10px;
+    height: 100vh;
+  
+  }
+  .grid > nav{
+    grid-area: nav;
+    border: 2px solid #000;
+    box-sizing: border-box;
+  }
+  .grid > #input-sena{
+    grid-area: input;
+    border: 2px solid #000;
+    box-sizing: border-box;
+  }
+  .grid >#video-sena{
+    grid-area: camera;
+    border: 2px solid #000;
+    box-sizing: border-box;
+  }
+  .grid > #lista-sena{
+    grid-area: lista;
+    border: 2px solid #000;
+    box-sizing: border-box;
+  }
+  .grid > #botones-procesar{
+    grid-area: contenedor;
+    border: 2px solid #000;
+    box-sizing: border-box;
+  }
+
+  .snap-container {
     margin-top: 16px;
     margin-bottom: 16px;
     text-align: center;
@@ -39,6 +78,19 @@
   .canvas-video-container{
     box-shadow: #000 0px 0px 10px;
   }
-  section{
-    width: 100%;
+  .botones-agrupar{
+    display: flex;
+    flex-direction: row;
+    justify-content: center ;
+    align-items: center;
+    gap: 20px;
+    margin-top: 20px;
   }
+.ajustarInput{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+}
