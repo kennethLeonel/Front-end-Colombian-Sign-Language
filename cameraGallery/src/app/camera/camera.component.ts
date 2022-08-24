@@ -7,10 +7,20 @@ import {AfterViewInit, Component, OnInit ,ElementRef, ViewChild} from '@angular/
 })
 export class CameraComponent implements AfterViewInit { 
 
-  WIDTH = 640;//640
-  HEIGHT = 480;
+   
+  
+//  elemento = document.getElementById('video')?.getBoundingClientRect().width; 
+//  elemento2 = document.getElementById('video')?.getBoundingClientRect().height; 
+async ngAfterViewInit() {
+  await this.setupDevices();
+  const widht = this.video.nativeElement.offsetWidth;
+  const height = this.video.nativeElement.offsetHeight;
 
- 
+  console.log(widht + " " + height);
+  
+  
+}
+;
   @ViewChild("video")
   public video!: ElementRef;
 
@@ -21,17 +31,22 @@ export class CameraComponent implements AfterViewInit {
   inputText : string = "";
   error: any;
   isCaptured!: boolean;
+  // hola2 : Number = this.video.nativeElement.offsetWidth;
+  WIDTH = 640;
+  HEIGHT = 480 ;
+  
+ 
   
 
-  async ngAfterViewInit() {
-    await this.setupDevices();
-  }
+
 
   async setupDevices() {
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
       try {
+        // console.log("hola "+this.elemento);
         const stream = await navigator.mediaDevices.getUserMedia({
-          video: true
+          video: true,
+          
         });
         if (stream) {
           this.video.nativeElement.srcObject = stream;
@@ -47,8 +62,11 @@ export class CameraComponent implements AfterViewInit {
   }
 
   capture() {
+    var hola : Number = this.video.nativeElement.offsetWidth;
+    console.log( hola );
+    // console.log("heyyyyy"+ this.hola2);
     for (let i = 0; i < 3; i++) {
-      
+        
         this.drawImageToCanvas(this.video.nativeElement);
         this.captures.push(this.canvas.nativeElement.toDataURL("image/png"));
         this.isCaptured = false;

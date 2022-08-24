@@ -22,11 +22,11 @@
 
 		</div>
 		<div id="video-sena" >
+			<!--  [width]="WIDTH" [height]="HEIGHT" -->
 			<div class="video-container canvas-video-container" *ngIf="!error">
 				<video [class.show]="!isCaptured" [class.hide]="isCaptured" #video id="video" [width]="WIDTH" [height]="HEIGHT"
 					autoplay></video>
-				<canvas [class.show]="isCaptured" [class.hide]="!isCaptured" #canvas id="canvas" [width]="WIDTH"
-					[height]="HEIGHT"></canvas>
+				<canvas [class.show]="isCaptured" [class.hide]="!isCaptured" #canvas id="canvas" [width]="WIDTH" [height]="HEIGHT"></canvas>
 			</div>
 			
 			<div class="snap-container">
