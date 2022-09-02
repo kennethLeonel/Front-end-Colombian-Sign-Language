@@ -3,8 +3,32 @@
   justify-content: space-between;
   background-color: #607EAA;
 }
+.nombreProyecto{
+
+  font-size: 20px;
+  font-weight: bold;
+  padding: 10px;
+}
 .navegacion-lista{
   display: flex;
   justify-content: space-between;
   gap: 15px;
+  padding: 10px;
+}
+
+.navegacion-lista li a{
+
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: bold;
+  transition: 1s all;
+}
+.navegacion-lista li a:hover{
+  color: #1C3879;
+}
+
+
+
+.navegacion-lista li a i{
+  margin-right: 5px;
 }
