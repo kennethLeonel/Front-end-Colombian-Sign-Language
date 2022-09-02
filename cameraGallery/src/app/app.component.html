@@ -1,21 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Captura</title>
-</head>
-<body>
-	<div class="container">
-		<h3>Lenguaje de señas colombiano</h3>
-		<!-- <p>{{title}}</p> -->
-	
-				
-	  
-	</div>
-	<app-camera></app-camera>	
-</body>
-</html>
 
+	<nav class="navegacion"> 
+		<div>
+			<p>Lenguaje de señas Colombiana</p>
+		</div>
+		<ul class="navegacion-lista">
+			<li><a (click)="irATraduccion()"> Traducción <i class="fi fi-rr-user"></i></a></li>
+			<li><a (click)="irACaptura()"> Captura</a></li>
+			<li><a (click)="irALogin()"> Login</a></li>
+			<li><a (click)="irARegistro()"> Registro</a></li>
+			<li><a (click)="irAConfiguracion()"> Configuraciones</a></li>
+			<li><a (click)="irAEntrenamiento()">Entrenamiento</a></li>
+		</ul>
+	</nav>
+
+	<router-outlet></router-outlet>
+	<!-- <app-camera></app-camera>	 -->
 

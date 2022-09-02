@@ -3,19 +3,16 @@
   .grid{
     display: grid;
     width: 100%;
-    grid-template-areas: "nav input camera camera"
-                          "nav input camera camera"
-                          "nav lista lista lista"
-                          "nav  contenedor contenedor contenedor";
+    grid-template-areas: " input camera camera"
+                          " input camera camera"
+                          " lista lista lista"
+                          "  contenedor contenedor contenedor";
     grid-gap: 10px;
     height: 100vh;
+    padding: 10px;
   
   }
-  .grid > nav{
-    grid-area: nav;
-    border: 2px solid #000;
-    box-sizing: border-box;
-  }
+
   .grid > #input-sena{
     grid-area: input;
     border: 2px solid #000;
