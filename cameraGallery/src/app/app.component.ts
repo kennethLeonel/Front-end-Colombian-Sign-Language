@@ -1,5 +1,9 @@
 import { Component,VERSION } from '@angular/core';
 import { Router } from '@angular/router';
+import {gsap} from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 @Component({
   selector: 'app-root',
@@ -10,7 +14,15 @@ export class AppComponent {
   title = 'cameraGallery';
   name = 'Angular ' + VERSION.major;
 
+
+
+
+
+
   constructor( private router :Router) {
+  }
+  home(){
+    this.router.navigate(['/home']);
   }
   irATraduccion(){
     this.router.navigate(['/traductor']);

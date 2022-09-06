@@ -1,0 +1,26 @@
+.padreCards{
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 4 0px;
+  }
+  
+.card{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    padding: 10px;
+    border-radius: 15px;
+    transition: 1s all;
+  }
+  .card:hover{
+    box-shadow: 0 0 10px 0 #1C3879;
+    transform: scale(1.08);
+  
+  }
+  .perfil{
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+  }

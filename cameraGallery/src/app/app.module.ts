@@ -10,6 +10,7 @@ import { LoginComponent } from './login/login.component';
 import { RegistroComponent } from './registro/registro.component';
 import { ConfiguracionesComponent } from './configuraciones/configuraciones.component';
 import { EntrenamientoComponent } from './entrenamiento/entrenamiento.component';
+import { AboutComponent } from './about/about.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { EntrenamientoComponent } from './entrenamiento/entrenamiento.component'
     LoginComponent,
     RegistroComponent,
     ConfiguracionesComponent,
-    EntrenamientoComponent
+    EntrenamientoComponent,
+    AboutComponent
    
  
   ],

@@ -1,7 +1,7 @@
 
 	<nav class="navegacion"> 
 		<div>
-			<p class="nombreProyecto">Lenguaje de señas Colombiana</p>
+			<p class="nombreProyecto" (click)="home()">Lenguaje de señas Colombiana</p>
 		</div>
 		<ul class="navegacion-lista">
 			<li><a (click)="irATraduccion()"> <i class="fa-solid fa-video"></i> Traducción  </a></li>
@@ -12,6 +12,7 @@
 			<li><a (click)="irAEntrenamiento()"><i class="fa-solid fa-filter"></i>Entrenamiento</a></li>
 		</ul>
 	</nav>
+
 
 	<router-outlet></router-outlet>
 	<!-- <app-camera></app-camera>	 -->

@@ -1,0 +1,26 @@
+
+
+<main>  
+    <section>
+        <p class="lor">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur inventore quibusdam facilis iusto eos! Minus, cupiditate ipsa! Aliquid quod vero architecto quaerat nemo, accusamus facilis illum? Cumque, vel odit. Perferendis?
+        </p>
+        <p class="lor1">
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nobis, iste eligendi? Veritatis, laboriosam, maiores perferendis, nesciunt cum reprehenderit debitis dolorem facilis sequi in facere explicabo vel earum voluptatem aliquam illum.
+        </p>
+        <p class="lor2">
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nobis, iste eligendi? Veritatis, laboriosam, maiores perferendis, nesciunt cum reprehenderit debitis dolorem facilis sequi in facere explicabo vel earum voluptatem aliquam illum.
+        </p>
+    </section>
+
+<section class="padreCards">
+  <div *ngFor="let integrante of integrantes" class="card"> 
+    <div class="imagenPerfil"> 
+      <img src="{{integrante.perfil}}" alt="Perfil Integrante" class="perfil">
+    </div>
+    <p>{{integrante.nombre}} </p>
+    <p>{{integrante.apellido}} </p>
+    <p>{{integrante.correo}} </p>
+  </div>
+</section>  
+</main>
