@@ -1,8 +1,16 @@
+section{
+  margin-top: 250px;
+}
+
 .padreCards{
     display: flex;
     gap: 10px;
     justify-content: center;
     margin-top: 4 0px;
+  }
+  .subtitulo{
+    text-align: center;
+    margin-bottom: 20px;
   }
   
 .card{
@@ -24,3 +32,20 @@
     height: 200px;
     border-radius: 50%;
   }
+  .redes{
+    display: flex;
+    justify-content: center;
+    gap: 20px
+  }
+  .redes p a{
+    color: #1C3879;
+    font-size: 20px;
+    transition: 1s all;
+  }
+  .redes p a:hover{
+    color: #607EAA;
+  } 
+
+  
+
+

@@ -20,7 +20,6 @@
     "@angular/router": "~13.3.0",
     "@tensorflow-models/mobilenet": "^2.1.0",
     "@tensorflow/tfjs": "^3.20.0",
-    "@types/gsap": "^3.0.0",
     "gsap": "^3.11.1",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",

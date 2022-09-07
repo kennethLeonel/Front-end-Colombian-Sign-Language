@@ -1,7 +1,8 @@
+import { Prediction } from './../../../prediction';
 import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import * as mobilenet from '@tensorflow-models/mobilenet';
 import * as tf from '@tensorflow/tfjs';
-import { Prediction } from './../prediction';
+
 @Component({
   selector: 'app-traduccion',
   templateUrl: './traduccion.component.html',
@@ -26,6 +27,9 @@ export class TraduccionComponent implements OnInit,AfterViewInit {
     }, 3000);
   }
 
+
+
+  // fin parte prueba
   async ngAfterViewInit() {
     const vid = this.video?.nativeElement;
 

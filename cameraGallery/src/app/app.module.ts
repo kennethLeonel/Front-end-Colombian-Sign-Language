@@ -11,6 +11,7 @@ import { RegistroComponent } from './registro/registro.component';
 import { ConfiguracionesComponent } from './configuraciones/configuraciones.component';
 import { EntrenamientoComponent } from './entrenamiento/entrenamiento.component';
 import { AboutComponent } from './about/about.component';
+import { PruebaTensorComponent } from './prueba-tensor/prueba-tensor.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { AboutComponent } from './about/about.component';
     RegistroComponent,
     ConfiguracionesComponent,
     EntrenamientoComponent,
-    AboutComponent
+    AboutComponent,
+    PruebaTensorComponent
    
  
   ],

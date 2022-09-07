@@ -1,26 +1,28 @@
-import { Component,VERSION } from '@angular/core';
+import { Component,VERSION,OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import {gsap} from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-gsap.registerPlugin(ScrollTrigger);
+
+
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit  {
   title = 'cameraGallery';
   name = 'Angular ' + VERSION.major;
 
 
 
+  ngOnInit(): void {
+    
 
-
-
-  constructor( private router :Router) {
   }
+
+
+  constructor( private router :Router ) {}
+
   home(){
     this.router.navigate(['/home']);
   }
