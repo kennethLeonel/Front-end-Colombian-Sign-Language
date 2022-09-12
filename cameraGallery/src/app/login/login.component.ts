@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { FormGroup,  FormBuilder,  Validators } from '@angular/forms';
+
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -8,9 +11,23 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
   email : string ="";
   contra : string ="";
-  constructor( private router :Router) { }
+  angForm: FormGroup|any;
+  constructor( private router :Router,private fb: FormBuilder) { 
+    this.createForm()
+  }
 
   ngOnInit(): void {
+  }
+
+  createForm() {
+    this.angForm = this.fb.group({
+    
+      contra: ['', Validators.required ],
+      email: ['', Validators.required ],
+     
+     
+
+    });
   }
   // home(){
   //   this.router.navigate(['/home']);
