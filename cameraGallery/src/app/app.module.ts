@@ -12,7 +12,7 @@ import { ConfiguracionesComponent } from './configuraciones/configuraciones.comp
 import { EntrenamientoComponent } from './entrenamiento/entrenamiento.component';
 import { AboutComponent } from './about/about.component';
 import { PruebaTensorComponent } from './prueba-tensor/prueba-tensor.component';
-
+import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,7 +30,8 @@ import { PruebaTensorComponent } from './prueba-tensor/prueba-tensor.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    CameraModule
+    CameraModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
