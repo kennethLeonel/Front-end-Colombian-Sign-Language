@@ -13,8 +13,7 @@ import { Router,ActivatedRoute } from '@angular/router';
   styleUrls: ['./about.component.css']
 })
 export class AboutComponent implements OnInit {
-  esperar : number | undefined;
-  usuarioLogueado = false;
+
   
   integrantes = [{
     perfil: "../assets/images/juan.jpeg",
@@ -69,14 +68,6 @@ export class AboutComponent implements OnInit {
       gsap.registerPlugin(ScrollTrigger,Draggable);
       this.initScrollTriggers();
 
-      this.route.queryParamMap
-      .subscribe((params) => {
-        this.esperar = Number(params.get('id'));
-        if(this.esperar == 1){
-          this.usuarioLogueado = true;
-          console.log(this.usuarioLogueado);
-        }
-    });
   }
   
   

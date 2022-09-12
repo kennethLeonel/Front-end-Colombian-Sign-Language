@@ -12,9 +12,9 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  home(){
-    this.router.navigate(['/home']);
-  }
+  // home(){
+  //   this.router.navigate(['/home']);
+  // }
   login (){
     console.log(this.email);
     console.log(this.contra);

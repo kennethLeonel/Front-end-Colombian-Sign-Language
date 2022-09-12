@@ -1,4 +1,4 @@
-import { AppComponent } from './app.component';
+
 import { EntrenamientoComponent } from './entrenamiento/entrenamiento.component';
 import { ConfiguracionesComponent } from './configuraciones/configuraciones.component';
 import { RegistroComponent } from './registro/registro.component';
@@ -21,7 +21,7 @@ const routes: Routes = [
   {path: "home", component: AboutComponent},
   {path: "prueba", component: PruebaTensorComponent},
   {path: "**", redirectTo: "/home"},
-  {path: ":id", component: AppComponent} 
+  {path: ":home/:id", component: AboutComponent}
 
 ];
 
