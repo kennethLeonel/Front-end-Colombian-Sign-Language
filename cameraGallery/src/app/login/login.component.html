@@ -1,1 +1,44 @@
-<p>login works!</p>
+
+<!-- 
+    <div class="contenedor-login">
+        <div class="imagenLogin">
+            <img src="../../assets/images/loginImage.jpg" alt="">
+        </div>
+        <div class="formulario-login">
+            <h2>Inicia sesión</h2>
+            <form action="" method="get" class="formulario-login-form">
+                <div class="input-container">
+                    <label for="email">Email: </label>
+                    <input type="email" name="email" id="email" placeholder="Email" required>
+                </div>
+                <div class="input-container">
+                    <label for="password">Contraseña</label>
+                    <input type="password" name="password" id="password" placeholder="Contraseña" required>
+                </div>
+                <div >
+                    <input type="submit" value="Iniciar sesión">
+                </div>
+            </form>
+        </div>
+    </div> -->
+
+<div class="contenedor-login">
+    <div class="formulario-login">
+        <h2>Inicia sesión</h2>
+        <form action="" method="get" class="formulario-login-form">
+            <div class="input-container">
+                <label for="email">Email: </label>
+                <input type="email" name="email" id="email" placeholder="Email" required [(ngModel)]="email">
+            </div>
+            <div class="input-container">
+                <label for="password">Contraseña</label>
+                <input type="password" name="password" id="password" placeholder="Contraseña" required [(ngModel)]="contra">
+            </div>
+            <div >
+                <input type="submit" value="Iniciar sesión" class="boton" (click)="login()" >
+            </div>
+        </form>
+    </div>
+</div>
+
+

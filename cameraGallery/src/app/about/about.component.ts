@@ -4,13 +4,17 @@ import {gsap} from 'gsap';
 import {TimelineMax} from 'gsap/gsap-core';
 import {Draggable} from 'gsap/Draggable';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+import { Router,ActivatedRoute } from '@angular/router';
+
 @Component({
   selector: 'app-about',
   templateUrl: './about.component.html',
   styleUrls: ['./about.component.css']
 })
 export class AboutComponent implements OnInit {
-
+  esperar : number | undefined;
+  usuarioLogueado = false;
   
   integrantes = [{
     perfil: "../assets/images/juan.jpeg",
@@ -45,7 +49,7 @@ export class AboutComponent implements OnInit {
     github: "https://github.com/CristianJavierDaCamaraSousa"
   }
   ]
-  constructor() { }
+  constructor(private router :Router,private route: ActivatedRoute) { }
   initScrollTriggers() {
     document.querySelectorAll(".box").forEach(box => {
       const scrollBox = gsap.timeline({
@@ -62,8 +66,18 @@ export class AboutComponent implements OnInit {
     });
   }
   ngOnInit(): void {
-    gsap.registerPlugin(ScrollTrigger,Draggable);
-    this.initScrollTriggers();
-  }
+      gsap.registerPlugin(ScrollTrigger,Draggable);
+      this.initScrollTriggers();
 
+      this.route.queryParamMap
+      .subscribe((params) => {
+        this.esperar = Number(params.get('id'));
+        if(this.esperar == 1){
+          this.usuarioLogueado = true;
+          console.log(this.usuarioLogueado);
+        }
+    });
+  }
+  
+  
 }

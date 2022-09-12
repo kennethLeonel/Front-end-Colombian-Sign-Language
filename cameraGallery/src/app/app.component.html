@@ -1,18 +1,29 @@
 
-	<nav class="navegacion"> 
+	<nav class="navegacion" *ngIf=" usuarioLogueado == false	; else elseBlock"> 
 		<div>
 			<p class="nombreProyecto" (click)="home()">Lenguaje de señas Colombiana</p>
 		</div>
 		<ul class="navegacion-lista">
 			<li><a (click)="irATraduccion()"> <i class="fa-solid fa-video"></i> Traducción  </a></li>
-			<li><a (click)="irACaptura()"> <i class="fa-solid fa-camera"></i>Captura</a></li>
 			<li><a (click)="irALogin()"> <i class="fa-solid fa-user"></i>Login</a></li>
 			<li><a (click)="irARegistro()"><i class="fa-solid fa-file-signature"></i> Registro</a></li>
-			<li><a (click)="irAConfiguracion()"> <i class="fa-solid fa-gears"></i>Configuraciones</a></li>
-			<li><a (click)="irAEntrenamiento()"><i class="fa-solid fa-filter"></i>Entrenamiento</a></li>
 		</ul>
 	</nav>
-
+	
+	<ng-template #elseBlock>
+		<nav class="navegacion" > 
+			<div>
+				<p class="nombreProyecto" (click)="home()">Lenguaje de señas Colombiana</p>
+			</div>
+			<ul class="navegacion-lista">
+				<li><a (click)="irATraduccion()"> <i class="fa-solid fa-video"></i> Traducción  </a></li>
+				<li><a (click)="irACaptura()"> <i class="fa-solid fa-camera"></i>Captura</a></li>
+				<!-- falta función deslogeo -->
+				<li><a (click)="irAConfiguracion()"> <i class="fa-solid fa-gears"></i>Configuraciones</a></li>
+				<li><a (click)="irAEntrenamiento()"><i class="fa-solid fa-filter"></i>Entrenamiento</a></li>
+			</ul>
+		</nav>
+	</ng-template>
 	
 
 	<router-outlet></router-outlet>

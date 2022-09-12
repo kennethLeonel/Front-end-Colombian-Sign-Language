@@ -1,5 +1,5 @@
 import { Component,VERSION,OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router,ActivatedRoute, ParamMap } from '@angular/router';
 
 
 
@@ -12,16 +12,22 @@ import { Router } from '@angular/router';
 export class AppComponent implements OnInit  {
   title = 'cameraGallery';
   name = 'Angular ' + VERSION.major;
+  esperar : number | undefined;
+  usuarioLogueado = false;
 
-
-
-  ngOnInit(): void {
-    
-
+  ngOnInit() {
+    this.route.queryParamMap
+    .subscribe((params) => {
+      this.esperar = Number(params.get('id'));
+      if(this.esperar == 1){
+        this.usuarioLogueado = true;
+        console.log(this.usuarioLogueado);
+      }
+  });
   }
 
 
-  constructor( private router :Router ) {}
+  constructor( private router :Router,private route: ActivatedRoute  ) {}
 
   home(){
     this.router.navigate(['/home']);
