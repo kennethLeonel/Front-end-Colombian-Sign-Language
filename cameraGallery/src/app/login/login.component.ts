@@ -35,6 +35,8 @@ export class LoginComponent implements OnInit {
   login (){
     console.log(this.email);
     console.log(this.contra);
+    
+    
     this.router.navigate(['/home'], { queryParams: { id: '1' } });
   }
 

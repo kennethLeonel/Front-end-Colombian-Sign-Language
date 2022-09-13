@@ -1,4 +1,6 @@
 import {AfterViewInit, Component, OnInit ,ElementRef, ViewChild} from '@angular/core';
+import { SenasService } from '../services/senas/senas.service';
+
 
 @Component({
   selector: 'app-camera',
@@ -8,6 +10,11 @@ import {AfterViewInit, Component, OnInit ,ElementRef, ViewChild} from '@angular/
 export class CameraComponent implements AfterViewInit { 
 
    
+  constructor(
+    private senaService: SenasService,
+    
+  ) { }
+
   
 //  elemento = document.getElementById('video')?.getBoundingClientRect().width; 
 //  elemento2 = document.getElementById('video')?.getBoundingClientRect().height; 
@@ -28,6 +35,7 @@ async ngAfterViewInit() {
   public canvas!: ElementRef;
 
   captures: string[] = [];
+  imagenesProcedas : string[] = [];
   inputText : string = "";
   error: any;
   isCaptured!: boolean;
@@ -65,17 +73,17 @@ async ngAfterViewInit() {
     var hola : Number = this.video.nativeElement.offsetWidth;
     console.log( hola );
     // console.log("heyyyyy"+ this.hola2);
-    for (let i = 0; i < 3; i++) {
+    // for (let i = 0; i < 3; i++) {
         
         this.drawImageToCanvas(this.video.nativeElement);
         this.captures.push(this.canvas.nativeElement.toDataURL("image/png"));
         this.isCaptured = false;
     
-    }
+    // }
     // this.drawImageToCanvas(this.video.nativeElement);
     // this.captures.push(this.canvas.nativeElement.toDataURL("image/png"));
     console.log(this.captures);
-     this.isCaptured = true;
+    //  this.isCaptured = true;
   }
 
   removeCurrent() {
@@ -110,7 +118,11 @@ async ngAfterViewInit() {
     this.captures = [];
     this.isCaptured = false;
   }
-  
+  getBase64StringFromDataURL(captures: string[]){
+    for(let i = 0; i < captures.length; i++){
+      this.imagenesProcedas.push(captures[i].replace('data:', '').replace(/^.+,/, ''));
+    }
+  } 
 
   procesar(){
     if (this.captures.length <= 0) {
@@ -119,7 +131,20 @@ async ngAfterViewInit() {
      }else if (this.inputText == "") {
       alert("No se especifica la seña para procesar");
     }else{
-      alert("Procesando..." + this.inputText);
+     this.getBase64StringFromDataURL(this.captures);
+      
+      // alert("Procesando..." + this.inputText);
+      this.senaService.crearSena(this.imagenesProcedas ,this.inputText).subscribe(
+        res => {
+          console.log(res);
+          alert("Se ha subido la seña correctamente");
+          this.captures = [];
+          this.isCaptured = false;
+          this.inputText = "";
+          this.imagenesProcedas = [];
+        }
+      )
+
     }
     
   }  

@@ -13,6 +13,9 @@ import { EntrenamientoComponent } from './entrenamiento/entrenamiento.component'
 import { AboutComponent } from './about/about.component';
 import { PruebaTensorComponent } from './prueba-tensor/prueba-tensor.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,9 +34,12 @@ import { ReactiveFormsModule } from '@angular/forms';
     AppRoutingModule,
     FormsModule,
     CameraModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
