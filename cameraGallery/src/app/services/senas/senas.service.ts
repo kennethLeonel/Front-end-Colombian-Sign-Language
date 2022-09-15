@@ -10,8 +10,6 @@ export class SenasService {
     
    }
 
-
-   
   public crearSena(arreglo : any, nombreSena :string) {
     const url = 'http://localhost:8080/new-signal';
 
@@ -22,4 +20,13 @@ export class SenasService {
      
     }, {'Accept': 'application/json', 'Content-Type': 'application/json'});
   }
+
+  
+
+
+
+
+
+
+
 }

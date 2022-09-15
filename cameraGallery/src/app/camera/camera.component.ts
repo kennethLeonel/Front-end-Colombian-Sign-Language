@@ -144,7 +144,6 @@ async ngAfterViewInit() {
           this.imagenesProcedas = [];
         }
       )
-
     }
     
   }  

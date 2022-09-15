@@ -11,7 +11,7 @@ import { RegistroComponent } from './registro/registro.component';
 import { ConfiguracionesComponent } from './configuraciones/configuraciones.component';
 import { EntrenamientoComponent } from './entrenamiento/entrenamiento.component';
 import { AboutComponent } from './about/about.component';
-import { PruebaTensorComponent } from './prueba-tensor/prueba-tensor.component';
+
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -25,7 +25,7 @@ import { HttpClientModule } from '@angular/common/http';
     ConfiguracionesComponent,
     EntrenamientoComponent,
     AboutComponent,
-    PruebaTensorComponent
+   
    
  
   ],
@@ -38,7 +38,7 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule
   ],
   providers: [
-
+    
   ],
   bootstrap: [AppComponent]
 })
