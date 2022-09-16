@@ -1,86 +1,26 @@
-<!-- <div class="d-flex justify-content-center align-items-center flex-column">
-    <video autoplay playsinline muted id="webcam" width="600" height="600" #video></video>
-  
-    <div *ngIf="loading">
-      <img src="../../assets/images/loading.gif">
-    </div>
-  
-    <div class="list-group">
-      <div class="list-group-item" *ngFor="let prediction of predictions">
-        {{prediction.className}} - {{prediction.probability}}
+
+    <main class="grid"> 
+
+      <div class="container"> 
+        <div class="flexVideo">
+          <div>
+            <h2 class="centrar">Video</h2>
+            <video autoplay="true" class="input_video"></video>  
+          </div>
+           <div>
+            <h2  class="centrar">Vista Mediapipe</h2>
+            <canvas class="output_canvas" width="400px" height="400px"></canvas>
+           </div>
+        </div>      
       </div>
-    </div>
-  </div> -->
-  
-
-  <!--  device detector -->
-  <!-- <div class="container mt-5">
-
-    <div>
-      <h1>Device Info:</h1>
-      <pre>{{ device | json }}</pre>
-    </div>
-  
-    <hr>
-  
-    <div>
-      <h1>Is Mobile?</h1>
-      <pre>{{ isMobile }}</pre>
-    </div>
-  
-    <div>
-      <h1>Is Tablet?</h1>
-      <pre>{{ isTablet }}</pre>
-    </div>
-  
-    <div>
-      <h1>Is Desktop?</h1>
-      <pre>{{ isDesktop }}</pre>
-    </div>
-  
-  </div> -->
-
-
-<!-- end device detector -->
-<!-- end device detector -->
-
-  <!-- <div class="container">
-    <video class="input_video"></video>
-    <div class="canvas-container">
-    <canvas class="output_canvas" width="1280px" height="720px">
-    </canvas>
-    </div>
-    <div class="loading">
-      <div class="spinner"></div>
-      <div class="message">
-        Loading
+      <div class="sena">
+        <h2  class="centrar">Seña resultado</h2>
+        <p class="senaRealizada">Acá debemos tomar el resultado de la seña que nos mande el back </p>
       </div>
-    </div>
-    <a class="abs logo" href="http://www.mediapipe.dev" target="_blank">
-      <div style="display: flex;align-items: center;bottom: 0;right: 10px;">
-        <img class="logo" src="logo_white.png" alt="" style="
-          height: 50px;">
-        <span class="title">MediaPipe</span>
+      <div class="audioSena"> 
+        <h2  class="centrar">Audio de la seña</h2>
+        <a (click)="reproducirAudio()"><i class="fa-solid fa-microphone fa-2x"></i> Audio</a>
       </div>
-    </a>
-    <div class="shoutout">
-      <div>
-        <a href="https://solutions.mediapipe.dev/holistic">
-          Click here for more info
-        </a>
-      </div>
-    </div>
-  </div>
-  <div class="control-panel">
-  </div>
 
-    <div class="container">
-      <video class="input_video"></video>
-      <canvas class="output_canvas" width="1280px" height="720px"></canvas>
-    </div> -->
+    </main>
 
-    
-    <div class="container">        
-      <video autoplay="true" class="input_video"></video>        
-      <canvas class="output_canvas" width="1280px" height="720px"></canvas>
-    </div>
