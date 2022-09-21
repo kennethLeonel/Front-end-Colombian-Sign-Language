@@ -15,8 +15,15 @@
       </div>
       <div class="sena">
         <h2  class="centrar">Seña resultado</h2>
-        <p class="senaRealizada">Acá debemos tomar el resultado de la seña que nos mande el back </p>
+        <p class="senaRealizada"> hola {{resultado}} </p>
+        <div>
+          <button class="boton" (click)="enviarSena()">Guardar</button>
+        </div>
+        <div>
+          <button class="boton" (click)="sendMessage()">Guardar</button>
+        </div>
       </div>
+
       <div class="audioSena"> 
         <h2  class="centrar">Audio de la seña</h2>
         <a (click)="reproducirAudio()"><i class="fa-solid fa-microphone fa-2x"></i> Audio</a>

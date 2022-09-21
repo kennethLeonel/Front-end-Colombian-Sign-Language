@@ -18,8 +18,20 @@ export class SenasService {
       "name": nombreSena,
       "photos":  arreglo 
      
+    }, {'Accept': 'application/json', 'Content-Type': 'application/json'});  
+  }
+
+  public enviarSena(datos: any) {
+    const url = 'http://localhost:8080/predict-signal';
+
+    // return this.restService.post<any>(url,{array,nombreSena});
+    return this.restService.post<any>(url,{
+      "coordenadas" : datos
     }, {'Accept': 'application/json', 'Content-Type': 'application/json'});
   }
+
+
+
 
   
 

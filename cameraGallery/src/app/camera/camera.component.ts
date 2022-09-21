@@ -123,6 +123,7 @@ async ngAfterViewInit() {
       this.imagenesProcedas.push(captures[i].replace('data:', '').replace(/^.+,/, ''));
     }
   } 
+  
 
   procesar(){
     if (this.captures.length <= 0) {
