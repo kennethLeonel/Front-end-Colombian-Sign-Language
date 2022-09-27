@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup,  FormBuilder,  Validators } from '@angular/forms';
+import { UsuarioService } from '../services/usuario/usuario.service';
 
 
 @Component({
@@ -18,7 +19,7 @@ export class RegistroComponent implements OnInit {
   rolUsuario : string ="";
   angForm: FormGroup|any;
   userModel : string ="";
-  constructor(private router :Router,private fb: FormBuilder) { 
+  constructor(private router :Router,private fb: FormBuilder , private usuarioService : UsuarioService)  { 
     this.createForm();
   }
 
@@ -46,7 +47,14 @@ export class RegistroComponent implements OnInit {
       this.rolUsuario = this.rolC;
     }
     console.log(this.rolUsuario);
-    this.router.navigate(['/login'] );
+    this.usuarioService.crearUsuario(this.nombre,this.email,this.contra,this.rolUsuario).subscribe(
+      res => {
+        console.log(res);
+        alert("Se ha registrado correctamente");
+        this.router.navigate(['/login']);
+      },
+    );
+
   }
   
 

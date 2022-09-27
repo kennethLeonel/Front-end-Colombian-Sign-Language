@@ -1,18 +1,22 @@
-import { Prediction } from './../../../prediction';
-import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, Inject, enableProdMode } from '@angular/core';
-import * as mobilenet from '@tensorflow-models/mobilenet';
-import * as tf from '@tensorflow/tfjs';
+import { Component, OnInit } from '@angular/core';
 import { SenasService } from '../services/senas/senas.service';
 import { EnviarCordenadasService } from '../services/socket/enviar-cordenadas.service';
 // import { WebSocketSubjectService } from '../services/socket/web-socket-subject.service';
+
+import Speech from 'speak-tts';
+
+
+
+
 
 import {
   drawConnectors,
   drawLandmarks,
 } from '@mediapipe/drawing_utils/';
 import { Camera } from '@mediapipe/camera_utils';
-import { FACEMESH_TESSELATION, HAND_CONNECTIONS, Holistic, POSE_CONNECTIONS } from '@mediapipe/holistic';
-import { webSocket, WebSocketSubject } from 'rxjs/webSocket';
+import { HAND_CONNECTIONS, Holistic, POSE_CONNECTIONS } from '@mediapipe/holistic';
+import { WebSocketSubject } from 'rxjs/webSocket';
+
 
 
 @Component({
@@ -28,23 +32,30 @@ export class TraduccionComponent implements OnInit {
   canvasCtx: any;
 
   datosAProcesar: any;
-  senaObtenida: any;
+  senaObtenida: any ;
   resultado: any = "hola";
 
   constructor(private senaService: SenasService, private enviar: EnviarCordenadasService) {
 
     var functi = async (msg: any, ws: WebSocketSubject<any>) => {
       var mensaje = JSON.parse(msg);
-      if (mensaje['message'] === "chao") {
+      if (mensaje === "chao") {
         console.log('Hey me activaron');
         ws.complete();
       }
-      console.log(mensaje);
-      this.resultado = mensaje['message'];
+    
+      for(let key in mensaje) {
+        this.resultado = key + " con " + mensaje[key] + " porciento";
+        break
+      }
+      
+   
+      
+      console.log("resultado",this.resultado);
     }
     enviar.getmessages(functi);
 
-    //this.resultado = "result"
+    
 
   }
 
@@ -143,17 +154,47 @@ export class TraduccionComponent implements OnInit {
 
 
   }
-  reproducirAudio() {
+  reproducirAudio(sena: any) {
+    console.log("reproducirAudio",sena);
+    let utterance = new SpeechSynthesisUtterance(sena);
+    // utterance.lang = 'es-ES';
+    // utterance.rate = 1;
+    // utterance.pitch = 1;
+    // utterance.volume = 1;
+    speechSynthesis.speak(utterance);
+    // const speech = new Speech();
+    // speech.init({
+    //     volume: 1,
+    //     lang: "en-GB",
+    //     rate: 1,
+    //     pitch: 1,
+    //     voice:'Google UK English Male',
+    //   })
+    //   speech.speak({
+    //     text: sena,
+    // }).then(() => {
+    //     console.log("Success !")
+    // }).catch((e: any)  => {
+    //     console.error("An error occurred :", e)
+    // })
+    
+   
+    
 
+    
   }
+
+  
 
   enviarSena() {
     this.senaService.enviarSena(this.datosAProcesar).subscribe(
-      res => {
+      (      res: string) => {
         console.log(res);
         alert("El resultado es: " + res);
         this.senaObtenida = res;
+      
         this.datosAProcesar = {};
+       
         //Puede ser 
         //this.reproducirAudio();
       }
@@ -165,6 +206,13 @@ export class TraduccionComponent implements OnInit {
     this.enviar.socketConectado(this.datosAProcesar);
 
   }
+
+
+
+
+
+
+  
 
 }
 

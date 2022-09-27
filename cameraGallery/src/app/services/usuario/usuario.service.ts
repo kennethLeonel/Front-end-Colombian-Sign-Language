@@ -8,116 +8,131 @@ import { RestService } from '../rest.service';
 })
 export class UsuarioService {
 
-  constructor() { }
+  constructor(private restService: RestService) { }
+
+
+  public crearUsuario(nombre: string, correo: string, password: string , rol: string) {
+    const url = 'http://localhost:8080/new-signal';
+
+    // return this.restService.post<any>(url,{array,nombreSena});
+    return this.restService.post<any>(url,{
+      "nombre": nombre,
+      "correo": correo,
+      "password": password,
+      "rol": rol
+     
+    }, {'Accept': 'application/json', 'Content-Type': 'application/json'});  
+  }
+
 }
 
 
 
 
 
-@Injectable({
-  providedIn: 'root'
-})
-export class TripulanteService {
+// @Injectable({
+//   providedIn: 'root'
+// })
+// export class TripulanteService {
 
-  constructor(
-    private restService: RestService
-  ) { }
+//   constructor(
+//     private restService: RestService
+//   ) { }
 
-  // CRUD - CREATE - READ - UPDATE - DELETE
+//   // CRUD - CREATE - READ - UPDATE - DELETE
 
-  // ------------------------------------------------------------
-  // -------------------------- CREATE --------------------------
-  // ------------------------------------------------------------
+//   // ------------------------------------------------------------
+//   // -------------------------- CREATE --------------------------
+//   // ------------------------------------------------------------
 
-  // ------------------------------------------------------------
-  // ------------------------- OTROS ---------------------------
-  // ------------------------------------------------------------
+//   // ------------------------------------------------------------
+//   // ------------------------- OTROS ---------------------------
+//   // ------------------------------------------------------------
 
-  public setIdTripulanteLogeado(id: number) {
-    sessionStorage.setItem('idTripulanteActual', String(id));
-  }
+//   public setIdTripulanteLogeado(id: number) {
+//     sessionStorage.setItem('idTripulanteActual', String(id));
+//   }
 
-  public setRolTripulanteLogeado(rol: string) {
-    sessionStorage.setItem('rolTripulanteActual', rol);
-  }
+//   public setRolTripulanteLogeado(rol: string) {
+//     sessionStorage.setItem('rolTripulanteActual', rol);
+//   }
 
-  public getIdTripulanteLogeado(): number {
-    if (this.isAuth()) {
-      return Number(sessionStorage.getItem('idTripulanteActual'));
-    }
-    else {
-      return -1;
-    }
-  }
+//   public getIdTripulanteLogeado(): number {
+//     if (this.isAuth()) {
+//       return Number(sessionStorage.getItem('idTripulanteActual'));
+//     }
+//     else {
+//       return -1;
+//     }
+//   }
 
-  public getRolTripulanteLogeado(): string {
-    if (this.isAuth()) {
-      return sessionStorage.getItem('rolTripulanteActual')!;
-    }
-    else {
-      return '';
-    }
-  }
+//   public getRolTripulanteLogeado(): string {
+//     if (this.isAuth()) {
+//       return sessionStorage.getItem('rolTripulanteActual')!;
+//     }
+//     else {
+//       return '';
+//     }
+//   }
 
-  public cerrarSesion(): void {
-    var sesionIniciada = this.isAuth();
-    var mensaje = '';
+//   public cerrarSesion(): void {
+//     var sesionIniciada = this.isAuth();
+//     var mensaje = '';
 
-    console.log(sesionIniciada);
+//     console.log(sesionIniciada);
 
-    if (sesionIniciada) {
-      this.logout().subscribe(
-        () => {
-          sessionStorage.clear;
-          sessionStorage.setItem('Auth', 'false');
-          sessionStorage.removeItem('idTripulanteActual');
-          sessionStorage.removeItem('rolTripulanteActual');
-          mensaje = 'Sesion cerrada correctamente';
-        },
-        error => mensaje = 'Error'
-      );
-    }
-    else {
-      mensaje = 'Error: No hay una sesion abierta';
-    }
-  }
+//     if (sesionIniciada) {
+//       this.logout().subscribe(
+//         () => {
+//           sessionStorage.clear;
+//           sessionStorage.setItem('Auth', 'false');
+//           sessionStorage.removeItem('idTripulanteActual');
+//           sessionStorage.removeItem('rolTripulanteActual');
+//           mensaje = 'Sesion cerrada correctamente';
+//         },
+//         error => mensaje = 'Error'
+//       );
+//     }
+//     else {
+//       mensaje = 'Error: No hay una sesion abierta';
+//     }
+//   }
 
-  public isAuth(): boolean {
-    if (sessionStorage.getItem('Auth') != null && sessionStorage.getItem('Auth') === 'true') {
-      return true;
-    }
-    else {
-      return false;
-    }
-  }
-
-
-
-  ///////////////////////////////////////
-  /////    Autenticación
-  ///////////////////////////////////////
+//   public isAuth(): boolean {
+//     if (sessionStorage.getItem('Auth') != null && sessionStorage.getItem('Auth') === 'true') {
+//       return true;
+//     }
+//     else {
+//       return false;
+//     }
+//   }
 
 
-  public login(usuario: string, password: string) {
-    const formHeaders = new HttpHeaders();
-    formHeaders.append('Content-Type', 'application/x-www-form-urlencoded');
 
-    const formParams = new HttpParams()
-      .set('username', usuario)
-      .set('password', password);
-
-    return this.restService.post<any>('http://localhost:8080/login', null, {
-      headers: formHeaders,
-      params: formParams,
-      withCredentials: true
-    });
-  }
-
-  public logout() {
-    return this.restService.post('http://localhost:8080/logout', '',
-      { withCredentials: true });
-  }
+//   ///////////////////////////////////////
+//   /////    Autenticación
+//   ///////////////////////////////////////
 
 
-}
+//   public login(usuario: string, password: string) {
+//     const formHeaders = new HttpHeaders();
+//     formHeaders.append('Content-Type', 'application/x-www-form-urlencoded');
+
+//     const formParams = new HttpParams()
+//       .set('username', usuario)
+//       .set('password', password);
+
+//     return this.restService.post<any>('http://localhost:8080/login', null, {
+//       headers: formHeaders,
+//       params: formParams,
+//       withCredentials: true
+//     });
+//   }
+
+//   public logout() {
+//     return this.restService.post('http://localhost:8080/logout', '',
+//       { withCredentials: true });
+//   }
+
+
+// }
