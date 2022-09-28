@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { SenasService } from '../services/senas/senas.service';
 import { EnviarCordenadasService } from '../services/socket/enviar-cordenadas.service';
-// import { WebSocketSubjectService } from '../services/socket/web-socket-subject.service';
 
-import Speech from 'speak-tts';
+
 
 
 
@@ -14,7 +13,7 @@ import {
   drawLandmarks,
 } from '@mediapipe/drawing_utils/';
 import { Camera } from '@mediapipe/camera_utils';
-import { HAND_CONNECTIONS, Holistic, POSE_CONNECTIONS } from '@mediapipe/holistic';
+import { HAND_CONNECTIONS, Holistic, POSE_CONNECTIONS , FACEMESH_TESSELATION } from '@mediapipe/holistic';
 import { WebSocketSubject } from 'rxjs/webSocket';
 
 
@@ -33,7 +32,8 @@ export class TraduccionComponent implements OnInit {
 
   datosAProcesar: any;
   senaObtenida: any ;
-  resultado: any = "hola";
+  resultado: any = null;
+  datosObtenidos : any = [];
 
   constructor(private senaService: SenasService, private enviar: EnviarCordenadasService) {
 
@@ -45,13 +45,46 @@ export class TraduccionComponent implements OnInit {
       }
     
       for(let key in mensaje) {
-        this.resultado = key + " con " + mensaje[key] + " porciento";
-        break
+        // this.resultado = key + " con " + mensaje[key] + " porciento";
+        // break
+        this.datosObtenidos.push({ sena : key, peso: mensaje[key] });
       }
       
-   
-      
+      this.datosObtenidos.forEach((senaActual: any) => {
+          if (senaActual.peso >= 95){
+            this.resultado = senaActual.sena;
+            if (this.resultado=="Telefono"){
+              this.resultado="Teléfono";
+            }else if (this.resultado=="Balon"){
+              this.resultado="Balón";
+            }else if (this.resultado=="Sabado"){
+              this.resultado="Sábado";
+            }else if (this.resultado=="Lampara"){
+              this.resultado="Lámpara";
+            }
+            this.datosObtenidos = [];
+            this.senaObtenida =  this.resultado;
+            this.reproducirAudio(this.senaObtenida);
+            this.resultado = null;
+            
+            
+          }
+      });
+      if (this.resultado == null) {
+          this.resultado = " las seña realizada con mayor probabilidad son "+ this.datosObtenidos[0].sena + ", " +  this.datosObtenidos[1].sena + " O " +  this.datosObtenidos[2].sena ;
+         
+          this.datosObtenidos = [];
+          this.senaObtenida =  this.resultado;
+          this.reproducirAudio(this.senaObtenida);
+          this.resultado = null;
+          
+        }
       console.log("resultado",this.resultado);
+
+      // setTimeout(() =>{
+      //   this.reproducirAudio(this.senaObtenida);
+      // },5000);
+
     }
     enviar.getmessages(functi);
 
@@ -90,7 +123,7 @@ export class TraduccionComponent implements OnInit {
       height: 400,
     });
     camera.start();
-
+    
   }
 
   onResults(results: any) {
@@ -154,13 +187,17 @@ export class TraduccionComponent implements OnInit {
 
 
   }
+
+
+
+
   reproducirAudio(sena: any) {
     console.log("reproducirAudio",sena);
     let utterance = new SpeechSynthesisUtterance(sena);
-    // utterance.lang = 'es-ES';
-    // utterance.rate = 1;
-    // utterance.pitch = 1;
-    // utterance.volume = 1;
+    utterance.lang = 'es-ES';
+    utterance.rate = 1;
+    utterance.pitch = 1;
+    utterance.volume = 1;
     speechSynthesis.speak(utterance);
     // const speech = new Speech();
     // speech.init({
@@ -209,7 +246,7 @@ export class TraduccionComponent implements OnInit {
 
 
 
-
+  
 
 
   

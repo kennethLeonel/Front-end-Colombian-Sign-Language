@@ -15,7 +15,7 @@
       </div>
       <div class="sena">
         <h2  class="centrar">Seña resultado</h2>
-        <p class="senaRealizada"> hola {{resultado}} </p>
+        <p class="senaRealizada">   {{senaObtenida}} </p>
         <div>
           <button class="boton" (click)="enviarSena()">Guardar</button>
         </div>
@@ -26,7 +26,7 @@
 
       <div class="audioSena"> 
         <h2  class="centrar">Audio de la seña</h2>
-        <a (click)="reproducirAudio(resultado)"><i class="fa-solid fa-microphone fa-2x"></i> Audio</a>
+        <a (click)="reproducirAudio(senaObtenida)"><i class="fa-solid fa-microphone fa-2x"></i> Audio</a>
       </div>
 
     </main>
