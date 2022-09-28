@@ -1,12 +1,19 @@
 section{
-  margin-top: 250px;
+  margin-top: 60px;
 }
 
 .padreCards{
+
     display: flex;
-    gap: 10px;
+    padding: 10px;
+    flex-direction: row;
+    
+    gap: 15px;
     justify-content: center;
-    margin-top: 4 0px;
+    align-items: center;
+    width: 100%;
+
+
   }
   .subtitulo{
     text-align: center;
@@ -18,19 +25,22 @@ section{
     flex-direction: column;
     align-items: center;
     gap: 5px;
-    padding: 10px;
     border-radius: 15px;
+    padding: 5px;
+    width: 90%;
     transition: 1s all;
+    
   }
   .card:hover{
     box-shadow: 0 0 10px 0 #1C3879;
-    transform: scale(1.08);
-  
+    transform: scale(1.03);
+    
   }
   .perfil{
-    width: 200px;
-    height: 200px;
+    width: 100px;
+    height: 100px;
     border-radius: 50%;
+  
   }
   .redes{
     display: flex;
@@ -45,6 +55,13 @@ section{
   .redes p a:hover{
     color: #607EAA;
   } 
+
+  /* Media query  */
+  @media screen and (max-width: 1200px){
+    .padreCards{
+      flex-direction: column;
+    }
+  }
 
   
 

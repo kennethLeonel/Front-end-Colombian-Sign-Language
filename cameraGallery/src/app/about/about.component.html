@@ -1,7 +1,7 @@
 
 
 <main>  
-
+      <h1 class="subtitulo"> Manual de uso</h1>
     <section>
         <p class="lor">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur inventore quibusdam facilis iusto eos! Minus, cupiditate ipsa! Aliquid quod vero architecto quaerat nemo, accusamus facilis illum? Cumque, vel odit. Perferendis?
@@ -27,28 +27,29 @@
 
 
 
-  <section class="box">
-    <h2 class="subtitulo"> Grupo de Investigación</h2>
-    <div class="padreCards  "> 
-      <div *ngFor="let integrante of integrantes" class="card"> 
-        <div class="imagenPerfil"> 
-          <img src="{{integrante.perfil}}" alt="Perfil Integrante" class="perfil">
+  <section >
+    <div class="">
+      <h2 class="subtitulo"> Grupo de Investigación</h2>
+      <div class="padreCards box "> 
+        <div *ngFor="let integrante of integrantes" class="card"> 
+          <div class="imagenPerfil"> 
+            <img src="{{integrante.perfil}}" alt="Perfil Integrante" class="perfil">
+          </div>
+          <p>{{integrante.nombre}} </p>
+          <p>{{integrante.apellido}} </p>
+          <p>{{integrante.correo}} </p>
+          <div class="redes">
+            <p>
+              <a href={{integrante.linkedin}}> <i class="fa-brands fa-linkedin-in fa-2x"></i> </a>
+            </p>
+            <p>
+              <a href={{integrante.github}}> <i class="fa-brands fa-github fa-2x"></i> </a>
+            </p>
+          </div>
         </div>
-        <p>{{integrante.nombre}} </p>
-        <p>{{integrante.apellido}} </p>
-        <p>{{integrante.correo}} </p>
-        <div class="redes">
-          <p>
-            <a href={{integrante.linkedin}}> <i class="fa-brands fa-linkedin-in fa-2x"></i> </a>
-          </p>
-          <p>
-            <a href={{integrante.github}}> <i class="fa-brands fa-github fa-2x"></i> </a>
-          </p>
-        </div>
-
-          
       </div>
     </div>
+
   </section>
 
   

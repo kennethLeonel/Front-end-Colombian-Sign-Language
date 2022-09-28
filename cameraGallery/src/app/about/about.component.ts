@@ -54,10 +54,10 @@ export class AboutComponent implements OnInit {
       const scrollBox = gsap.timeline({
         scrollTrigger: {
           trigger: box,
-          pin: true,
-          start: "center center",
+          pin: false,
+          start: "top center",
           end: "center center",
-          markers: true,
+          markers: false,
           toggleActions: "play none none reverse"
         }
       });
