@@ -35,7 +35,8 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     CameraModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    
   ],
   providers: [
     

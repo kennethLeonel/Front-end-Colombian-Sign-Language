@@ -1,6 +1,6 @@
 
 .hamburguesa {
-  background-color: #7c8798;
+  background-color: #3873cc;
 }
 .navegacion{
   display: flex;
@@ -10,36 +10,31 @@
 .logo{
 
   width: 90%;
-/* margin-top: 10px; 
-margin-left: 10px; */
-}
-.nombreProyecto{
 
-  font-size: 20px;
-  font-weight: bold;
-  padding: 10px;
 }
-.navegacion-lista{
+
+ul{
   display: flex;
   justify-content: space-between;
   gap: 15px;
   padding: 10px;
 }
 
-.navegacion-lista li a{
+ul li a{
 
   text-decoration: none;
   font-size: 18px;
   font-weight: bold;
   transition: 1s all;
+  cursor: pointer;
 }
-.navegacion-lista li a:hover{
+ul li a:hover{
   color: #1C3879;
 }
 
 
 
-.navegacion-lista li a i{
+ul li a i{
   margin-right: 5px;
 }
 
