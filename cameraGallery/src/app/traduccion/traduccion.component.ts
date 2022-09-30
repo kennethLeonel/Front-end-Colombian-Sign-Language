@@ -13,7 +13,7 @@ import {
   drawLandmarks,
 } from '@mediapipe/drawing_utils/';
 import { Camera } from '@mediapipe/camera_utils';
-import { HAND_CONNECTIONS, Holistic, POSE_CONNECTIONS , FACEMESH_TESSELATION } from '@mediapipe/holistic';
+import { HAND_CONNECTIONS, Holistic, POSE_CONNECTIONS  } from '@mediapipe/holistic';
 import { WebSocketSubject } from 'rxjs/webSocket';
 
 
@@ -45,8 +45,7 @@ export class TraduccionComponent implements OnInit {
       }
     
       for(let key in mensaje) {
-        // this.resultado = key + " con " + mensaje[key] + " porciento";
-        // break
+
         this.datosObtenidos.push({ sena : key, peso: mensaje[key] });
       }
       
@@ -128,7 +127,7 @@ export class TraduccionComponent implements OnInit {
 
   onResults(results: any) {
 
-
+    
 
 
     this.canvasCtx.save();
@@ -176,15 +175,15 @@ export class TraduccionComponent implements OnInit {
 
     this.datosAProcesar = {
       pose: results.poseLandmarks,
-      face: results.faceLandmarks,
+      face: results.faceLandmarks.slice(0,468),
       leftHand: results.leftHandLandmarks,
       rightHand: results.rightHandLandmarks,
       segmentation: results.segmentationMask,
       ea: results.ea,
     }
+   
 
-
-
+    
 
   }
 
@@ -199,22 +198,7 @@ export class TraduccionComponent implements OnInit {
     utterance.pitch = 1;
     utterance.volume = 1;
     speechSynthesis.speak(utterance);
-    // const speech = new Speech();
-    // speech.init({
-    //     volume: 1,
-    //     lang: "en-GB",
-    //     rate: 1,
-    //     pitch: 1,
-    //     voice:'Google UK English Male',
-    //   })
-    //   speech.speak({
-    //     text: sena,
-    // }).then(() => {
-    //     console.log("Success !")
-    // }).catch((e: any)  => {
-    //     console.error("An error occurred :", e)
-    // })
-    
+
    
     
 
@@ -224,6 +208,7 @@ export class TraduccionComponent implements OnInit {
   
 
   enviarSena() {
+    
     this.senaService.enviarSena(this.datosAProcesar).subscribe(
       (      res: string) => {
         console.log(res);
@@ -240,8 +225,9 @@ export class TraduccionComponent implements OnInit {
 
 
   sendMessage() {
+    console.log("sendMessage",this.datosAProcesar );
     this.enviar.socketConectado(this.datosAProcesar);
-
+  
   }
 
 
