@@ -18,6 +18,7 @@ import { WebSocketSubject } from 'rxjs/webSocket';
 
 
 
+
 @Component({
   selector: 'app-traduccion',
   templateUrl: './traduccion.component.html',
@@ -34,6 +35,8 @@ export class TraduccionComponent implements OnInit {
   senaObtenida: any ;
   resultado: any = null;
   datosObtenidos : any = [];
+  Checkbox: any = null;
+  booleanoCheck : any =false;
 
   constructor(private senaService: SenasService, private enviar: EnviarCordenadasService) {
 
@@ -63,34 +66,63 @@ export class TraduccionComponent implements OnInit {
             }
             this.datosObtenidos = [];
             this.senaObtenida =  this.resultado;
-            this.reproducirAudio(this.senaObtenida);
+            if (!this.booleanoCheck){
+              this.reproducirAudio(this.resultado);
+            }
+           
             this.resultado = null; 
           }
       });
       if (this.resultado == null) {
-          this.resultado = " las seña realizada con mayor probabilidad son "+ this.datosObtenidos[0].sena + ", " +  this.datosObtenidos[1].sena + " O " +  this.datosObtenidos[2].sena ;
+          this.resultado = " las seña puede ser "+ this.datosObtenidos[0].sena + ", " +  this.datosObtenidos[1].sena + " O " +  this.datosObtenidos[2].sena ;
          
           this.datosObtenidos = [];
           this.senaObtenida =  this.resultado;
-          this.reproducirAudio(this.senaObtenida);
+          if (!this.booleanoCheck){
+            this.reproducirAudio(this.resultado);
+          }
           this.resultado = null;
           
         }
       console.log("resultado",this.resultado);
 
-      // setTimeout(() =>{
-      //   this.reproducirAudio(this.senaObtenida);
-      // },5000);
+
 
     }
+
     enviar.getmessages(functi);
 
-    
+    // this.booleanoCheck = this.Checkbox.checked;
+    // console.log(this.booleanoCheck);
+    setInterval(() =>{
+      console.log("hola 3s" );
+      this.sendMessage();
 
+    }, 3000);
   }
 
 
   ngOnInit() {
+    this.Checkbox = document.getElementsByClassName('mute')[0];
+    this.Checkbox.addEventListener('change',()=>{
+      this.booleanoCheck = this.Checkbox.checked;
+      console.log(this.booleanoCheck);
+      // if (this.booleanoCheck){
+        setInterval(() =>{
+          console.log("hola 1s" );
+          
+          this.sendMessage();
+    
+        }, 1000);
+      // }else{
+      //   setInterval(() =>{
+      //     console.log("hola 3s" );
+      //     this.sendMessage();
+    
+      //   }, 3000);
+      // }
+      
+    });
     this.videoElement = document.getElementsByClassName('input_video')[0];
     this.canvasElement = document.getElementsByClassName('output_canvas')[0];
     this.canvasCtx = this.canvasElement.getContext('2d');
@@ -125,7 +157,7 @@ export class TraduccionComponent implements OnInit {
 
   onResults(results: any) {
 
-    console.log( results.segmentationMask);
+   
 
 
     this.canvasCtx.save();
@@ -179,7 +211,8 @@ export class TraduccionComponent implements OnInit {
       segmentation: results.segmentationMask,
       ea: results.ea,
     }
-   
+  
+    
 
     
 
@@ -200,27 +233,32 @@ export class TraduccionComponent implements OnInit {
 
   
 
-  enviarSena() {
+  // enviarSena() {
     
-    this.senaService.enviarSena(this.datosAProcesar).subscribe(
-      (      res: string) => {
-        console.log(res);
-        alert("El resultado es: " + res);
-        this.senaObtenida = res;
+  //   this.senaService.enviarSena(this.datosAProcesar).subscribe(
+  //     (      res: string) => {
+  //       console.log(res);
+  //       alert("El resultado es: " + res);
+  //       this.senaObtenida = res;
       
-        this.datosAProcesar = {};
+  //       this.datosAProcesar = {};
        
-        //Puede ser 
-        //this.reproducirAudio();
-      }
-    )
-  }
+  //       //Puede ser 
+  //       //this.reproducirAudio();
+  //     }
+  //   )
+  // }
 
 
   sendMessage() {
-    console.log("sendMessage",this.datosAProcesar );
-    this.enviar.socketConectado(this.datosAProcesar);
-  
+
+    if (this.datosAProcesar.rightHand || this.datosAProcesar.leftHand){
+      this.enviar.socketConectado(this.datosAProcesar);
+    }else{
+      this.senaObtenida ='';
+    }
+    
+    
   }
 
 

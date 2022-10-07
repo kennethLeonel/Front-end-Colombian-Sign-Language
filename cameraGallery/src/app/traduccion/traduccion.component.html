@@ -16,18 +16,27 @@
       <div class="sena">
         <h2  class="centrar">Seña resultado</h2>
         <p class="senaRealizada">   {{senaObtenida}} </p>
-        <div>
+
+       
+        <!-- <div>
           <button class="boton" (click)="enviarSena()">Guardar</button>
-        </div>
-        <div>
+        </div> -->
+        <!-- <div>
           <button class="boton" (click)="sendMessage()">Guardar</button>
-        </div>
+        </div> -->
       </div>
 
       <div class="audioSena"> 
         <h2  class="centrar">Audio de la seña</h2>
         <a (click)="reproducirAudio(senaObtenida)"><i class="fa-solid fa-microphone fa-2x"></i> Audio</a>
+        <br>
+        <label for="mute">
+          <input type="checkbox" name="mute" class="mute"   > 
+          Silenciar
+        </label>
+  
       </div>
+
 
     </main>
 
