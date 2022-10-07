@@ -19,10 +19,9 @@ import { WebSocketSubject } from 'rxjs/webSocket';
 })
 export class TraduccionComponent implements OnInit {
     videoElement: any;
-    camera: any;
     canvasElement: any;
     canvasCtx: any;
-
+    camera: Camera | any ;
     datosAProcesar: any;
     senaObtenida: any;
     datosObtenidos: any = [];
@@ -197,7 +196,7 @@ export class TraduccionComponent implements OnInit {
             ea: results.ea ? results.ea : null,
         };
     }
-
+    
     reproducirAudio(sena: any) {
         console.log('reproducirAudio', sena);
         let utterance = new SpeechSynthesisUtterance(sena);
