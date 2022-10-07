@@ -212,7 +212,7 @@ export class TraduccionComponent implements OnInit {
 
         this.datosAProcesar = {
             pose: results.poseLandmarks,
-            face: results.faceLandmarks.slice(0, 468),
+            face: results.faceLandmarks ?  results.faceLandmarks.slice(0, 468) : null,
             leftHand: results.leftHandLandmarks,
             rightHand: results.rightHandLandmarks,
             segmentation: results.segmentationMask,
