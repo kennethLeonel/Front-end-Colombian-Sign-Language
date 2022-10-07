@@ -2,6 +2,7 @@ import { HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { RestService } from '../rest.service';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,8 +12,8 @@ export class UsuarioService {
   constructor(private restService: RestService) { }
 
 
-  public crearUsuario(nombre: string, correo: string, password: string , rol: string) {
-    const url = 'http://localhost:8080/new-signal';
+  public crearUsuario(nombre: string, correo: string, password: string , rol: string):Observable<string> {
+    const url = 'http://localhost:8080/new-user';
 
     // return this.restService.post<any>(url,{array,nombreSena});
     return this.restService.post<any>(url,{
@@ -25,6 +26,7 @@ export class UsuarioService {
   }
 
 }
+
 
 
 

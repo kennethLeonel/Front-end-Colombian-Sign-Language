@@ -11,5 +11,7 @@ export class EntrenamientoComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  entrenar(){
+    console.log("Entrenando");
+  }
 }

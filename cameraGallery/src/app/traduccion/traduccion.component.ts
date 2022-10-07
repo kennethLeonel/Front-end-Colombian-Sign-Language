@@ -64,9 +64,7 @@ export class TraduccionComponent implements OnInit {
             this.datosObtenidos = [];
             this.senaObtenida =  this.resultado;
             this.reproducirAudio(this.senaObtenida);
-            this.resultado = null;
-            
-            
+            this.resultado = null; 
           }
       });
       if (this.resultado == null) {
@@ -127,7 +125,7 @@ export class TraduccionComponent implements OnInit {
 
   onResults(results: any) {
 
-    
+    console.log( results.segmentationMask);
 
 
     this.canvasCtx.save();
@@ -198,11 +196,6 @@ export class TraduccionComponent implements OnInit {
     utterance.pitch = 1;
     utterance.volume = 1;
     speechSynthesis.speak(utterance);
-
-   
-    
-
-    
   }
 
   

@@ -1,6 +1,6 @@
 import {AfterViewInit, Component, OnInit ,ElementRef, ViewChild} from '@angular/core';
 import { SenasService } from '../services/senas/senas.service';
-
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-camera',
@@ -127,10 +127,22 @@ async ngAfterViewInit() {
 
   procesar(){
     if (this.captures.length <= 0) {
-       alert("No hay fotos para procesar");
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'No hay imagenes para procesar!',
+        confirmButtonText: 'Aceptar'
+      })
+       
     
      }else if (this.inputText == "") {
-      alert("No se especifica la seña para procesar");
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'No se especifica el nombre de la seña para procesar!',
+        confirmButtonText: 'Aceptar'
+      })
+      
     }else{
      this.getBase64StringFromDataURL(this.captures);
       
@@ -138,7 +150,13 @@ async ngAfterViewInit() {
       this.senaService.crearSena(this.imagenesProcedas ,this.inputText).subscribe(
         res => {
           console.log(res);
-          alert("Se ha subido la seña correctamente");
+          Swal.fire({
+            icon: 'success',
+            title: 'Genial',
+            text: 'Se ha subido la seña correctamente',
+            confirmButtonText: 'Aceptar'
+          })
+          // alert("Se ha subido la seña correctamente");
           this.captures = [];
           this.isCaptured = false;
           this.inputText = "";
