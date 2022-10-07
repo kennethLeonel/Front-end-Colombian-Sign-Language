@@ -25,7 +25,6 @@ export class TraduccionComponent implements OnInit {
 
     datosAProcesar: any;
     senaObtenida: any;
-    resultado: any = null;
     datosObtenidos: any = [];
     Checkbox: any = null;
     booleanoCheck: any = false;
@@ -43,54 +42,30 @@ export class TraduccionComponent implements OnInit {
                 ws.complete();
             }
 
+            this.datosObtenidos = [];
+
             for (let key in mensaje) {
                 this.datosObtenidos.push({ sena: key, peso: mensaje[key] });
             }
 
-            this.datosObtenidos.forEach((senaActual: any) => {
-                if (senaActual.peso >= 95) {
-                    this.resultado = senaActual.sena;
-                    if (this.resultado == 'Telefono') {
-                        this.resultado = 'Teléfono';
-                    } else if (this.resultado == 'Balon') {
-                        this.resultado = 'Balón';
-                    } else if (this.resultado == 'Sabado') {
-                        this.resultado = 'Sábado';
-                    } else if (this.resultado == 'Lampara') {
-                        this.resultado = 'Lámpara';
-                    }
-                    this.datosObtenidos = [];
-                    this.senaObtenida = this.resultado;
-                    if (!this.booleanoCheck) {
-                        this.reproducirAudio(this.resultado);
-                    }
-
-                    this.resultado = null;
-                }
-            });
-            if (this.resultado == null) {
-                this.resultado =
-                    ' las seña puede ser ' +
+            if (this.datosObtenidos[0].peso >= 95) {
+                this.senaObtenida = this.datosObtenidos[0].sena;
+            } else {
+                this.senaObtenida =
+                    'La seña puede ser ' +
                     this.datosObtenidos[0].sena +
-                    ', ' +
+                    ' o ' +
                     this.datosObtenidos[1].sena +
-                    ' O ' +
+                    ' o ' +
                     this.datosObtenidos[2].sena;
-
-                this.datosObtenidos = [];
-                this.senaObtenida = this.resultado;
-                if (!this.booleanoCheck) {
-                    this.reproducirAudio(this.resultado);
-                }
-                this.resultado = null;
             }
-            console.log('resultado', this.resultado);
+
+            if (!this.booleanoCheck) {
+                this.reproducirAudio(this.senaObtenida);
+            }
+
         };
-
         enviar.getmessages(functi);
-
-        // this.booleanoCheck = this.Checkbox.checked;
-        // console.log(this.booleanoCheck);
         setInterval(() => this.sendMessage(), this.intervalo);
     }
 
@@ -208,11 +183,11 @@ export class TraduccionComponent implements OnInit {
         });
         this.canvasCtx.restore();
 
-        //Llamada al servicio para obtener la sena
-
         this.datosAProcesar = {
             pose: results.poseLandmarks,
-            face: results.faceLandmarks.slice(0, 468),
+            face: results.faceLandmarks
+                ? results.faceLandmarks.slice(0, 468)
+                : [],
             leftHand: results.leftHandLandmarks,
             rightHand: results.rightHandLandmarks,
             segmentation: results.segmentationMask,
