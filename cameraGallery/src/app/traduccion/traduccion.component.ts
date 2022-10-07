@@ -18,8 +18,8 @@ import { WebSocketSubject } from 'rxjs/webSocket';
     providers: [EnviarCordenadasService],
 })
 export class TraduccionComponent implements OnInit {
-    // window : any;
     videoElement: any;
+    camera: any;
     canvasElement: any;
     canvasCtx: any;
 
@@ -61,9 +61,9 @@ export class TraduccionComponent implements OnInit {
             }
 
             if (!this.booleanoCheck) {
+                speechSynthesis.cancel();
                 this.reproducirAudio(this.senaObtenida);
             }
-
         };
         enviar.getmessages(functi);
         setInterval(() => this.sendMessage(), this.intervalo);
@@ -97,15 +97,20 @@ export class TraduccionComponent implements OnInit {
             minDetectionConfidence: 0.5,
             minTrackingConfidence: 0.5,
         });
-        holistic.onResults(this.onResults.bind(this));
 
-        const camera = new Camera(this.videoElement, {
+        this.camera = new Camera(this.videoElement, {
             onFrame: async () => {
                 await holistic.send({ image: this.videoElement });
             },
         });
-        camera.start();
+
+        this.camera.start();
         this.setIntervalo(this.Checkbox.checked);
+        holistic.onResults(this.onResults.bind(this));
+    }
+
+    ngOnDestroy() {
+        this.camera.stop();
     }
 
     onResults(results: any) {
@@ -184,12 +189,12 @@ export class TraduccionComponent implements OnInit {
         this.canvasCtx.restore();
 
         this.datosAProcesar = {
-            pose: results.poseLandmarks,
-            face: results.faceLandmarks ?  results.faceLandmarks.slice(0, 468) : null,
-            leftHand: results.leftHandLandmarks,
-            rightHand: results.rightHandLandmarks,
-            segmentation: results.segmentationMask,
-            ea: results.ea,
+            pose: results.poseLandmarks ? results.poseLandmarks : null,
+            face: results.faceLandmarks ? results.faceLandmarks.slice(0, 468) : null,
+            leftHand: results.leftHandLandmarks ? results.leftHandLandmarks : null,
+            rightHand: results.rightHandLandmarks ? results.rightHandLandmarks : null,
+            segmentation: results.segmentationMask ? results.segmentationMask : null,
+            ea: results.ea ? results.ea : null,
         };
     }
 
