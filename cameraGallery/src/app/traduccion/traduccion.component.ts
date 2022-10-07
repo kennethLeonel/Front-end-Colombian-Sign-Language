@@ -22,7 +22,7 @@ export class TraduccionComponent implements OnInit {
     videoElement: any;
     canvasElement: any;
     canvasCtx: any;
-
+    camera: Camera | any ;
     datosAProcesar: any;
     senaObtenida: any;
     datosObtenidos: any = [];
@@ -99,14 +99,15 @@ export class TraduccionComponent implements OnInit {
         });
         holistic.onResults(this.onResults.bind(this));
 
-        const camera = new Camera(this.videoElement, {
+        this.camera = new Camera(this.videoElement, {
             onFrame: async () => {
                 await holistic.send({ image: this.videoElement });
             },
         });
-        camera.start();
+        this.camera.start();
         this.setIntervalo(this.Checkbox.checked);
     }
+  
 
     onResults(results: any) {
         this.canvasCtx.save();
@@ -192,7 +193,12 @@ export class TraduccionComponent implements OnInit {
             ea: results.ea,
         };
     }
-
+    ngOnDestroy() {
+      //Called once, before the instance is destroyed.
+      //Add 'implements OnDestroy' to the class.
+      this.camera.stop()
+      
+    }
     reproducirAudio(sena: any) {
         console.log('reproducirAudio', sena);
         let utterance = new SpeechSynthesisUtterance(sena);
