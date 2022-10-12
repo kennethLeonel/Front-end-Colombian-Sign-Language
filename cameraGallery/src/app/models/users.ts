@@ -7,14 +7,4 @@ export class User_authenticated {
     ){}
 }
 
-export class User_data {
-    constructor (
-        public name: string,
-        public email: string,
-        public rol : string,
-        public password: string,  
 
-       
-    ){}
-
-}

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup,  FormBuilder,  Validators } from '@angular/forms';
 import { UsuarioService } from '../services/usuario/usuario.service';
-
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-registro',
@@ -36,9 +36,9 @@ export class RegistroComponent implements OnInit {
     });
   }
   registrarse(){
-    console.log(this.nombre);
-    console.log(this.email);
-    console.log(this.contra);
+    // console.log(this.nombre);
+    // console.log(this.email);
+    // console.log(this.contra);
   
 
     if(this.rolA !== ""){
@@ -46,11 +46,16 @@ export class RegistroComponent implements OnInit {
     }else if(this.rolC !== ""){
       this.rolUsuario = this.rolC;
     }
-    console.log(this.rolUsuario);
+    // console.log(this.rolUsuario);
     this.usuarioService.crearUsuario(this.nombre,this.email,this.contra,this.rolUsuario).subscribe(
       res => {
         console.log(res);
-        alert("Se ha registrado correctamente");
+        Swal.fire({
+          icon: 'success',
+          title: 'Usuario creado',
+          text: 'Usuario registrado correctamente',
+        })
+       
         this.router.navigate(['/login']);
       },
     );

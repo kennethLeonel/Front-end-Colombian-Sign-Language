@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { SenasService } from '../services/senas/senas.service';
 import { EnviarCordenadasService } from '../services/socket/enviar-cordenadas.service';
+// 
+import { NavigationExtras, Router } from '@angular/router';
+
 
 import { Camera } from '@mediapipe/camera_utils';
 import { drawConnectors, drawLandmarks } from '@mediapipe/drawing_utils/';
@@ -10,6 +13,9 @@ import {
     POSE_CONNECTIONS
 } from '@mediapipe/holistic';
 import { WebSocketSubject } from 'rxjs/webSocket';
+
+
+
 
 @Component({
     selector: 'app-traduccion',
@@ -21,18 +27,22 @@ export class TraduccionComponent implements OnInit {
     videoElement: any;
     canvasElement: any;
     canvasCtx: any;
-    camera: Camera | any ;
+    camera: Camera | any;
     datosAProcesar: any;
     senaObtenida: any;
     datosObtenidos: any = [];
     Checkbox: any = null;
     booleanoCheck: any = false;
-
+    //Para la prueba 10 seg
+    // intervalo = 10000;
     intervalo = 3000;
+   
+    arregloPrueba: any = [];
 
     constructor(
         private senaService: SenasService,
-        private enviar: EnviarCordenadasService
+        private enviar: EnviarCordenadasService,
+        private router: Router
     ) {
         var functi = async (msg: any, ws: WebSocketSubject<any>) => {
             var mensaje = JSON.parse(msg);
@@ -47,8 +57,44 @@ export class TraduccionComponent implements OnInit {
                 this.datosObtenidos.push({ sena: key, peso: mensaje[key] });
             }
 
+            // probar con lo de pasar datos al otro componente
+           
+                if (this.arregloPrueba.length < 10) {
+                    this.arregloPrueba.push(this.datosObtenidos[0]);
+                }
+                if (this.arregloPrueba.length == 10) {
+                    // this.arregloPrueba.push(-1);
+                    let navigationExtras: NavigationExtras = {
+                        state: {
+                            dato: this.arregloPrueba
+
+                        }
+                    };
+                    this.camera.stop();
+                    speechSynthesis.cancel();
+                    this.router.navigate(['/configuracion'], navigationExtras);
+                  
+
+                }
+
+
+             
+            
+            // finaliza parte prueba 
+
+
             if (this.datosObtenidos[0].peso >= 95) {
-                this.senaObtenida = this.datosObtenidos[0].sena;
+                if (this.datosObtenidos[0].sena === "Sabado") {
+                    this.senaObtenida = "Sábado";
+                } else if (this.datosObtenidos[0].sena === "Telefono") {
+                    this.senaObtenida = "Teléfono";
+                } else if (this.datosObtenidos[0].sena === "Balon") {
+                    this.senaObtenida = "Balón";
+                } else if (this.datosObtenidos[0].sena === "Lampara") {
+                    this.senaObtenida = "Lámpara";
+                } else {
+                    this.senaObtenida = this.datosObtenidos[0].sena;
+                }
             } else {
                 this.senaObtenida =
                     'La seña puede ser ' +
@@ -69,6 +115,8 @@ export class TraduccionComponent implements OnInit {
     }
 
     ngOnInit() {
+
+        // this.helper.prueba();
         this.Checkbox = document.getElementsByClassName('mute')[0];
         this.Checkbox.addEventListener('change', () => {
             this.setIntervalo(this.Checkbox.checked);
@@ -110,6 +158,7 @@ export class TraduccionComponent implements OnInit {
 
     ngOnDestroy() {
         this.camera.stop();
+        speechSynthesis.cancel();
     }
 
     onResults(results: any) {
@@ -196,7 +245,7 @@ export class TraduccionComponent implements OnInit {
             ea: results.ea ? results.ea : null,
         };
     }
-    
+
     reproducirAudio(sena: any) {
         console.log('reproducirAudio', sena);
         let utterance = new SpeechSynthesisUtterance(sena);
@@ -205,15 +254,19 @@ export class TraduccionComponent implements OnInit {
         utterance.pitch = 1;
         utterance.volume = 1;
         speechSynthesis.speak(utterance);
+
     }
 
     sendMessage() {
-        console.log(this.intervalo);
-        if (this.datosAProcesar.rightHand || this.datosAProcesar.leftHand) {
-            this.enviar.socketConectado(this.datosAProcesar);
-        } else {
-            this.senaObtenida = '';
+        if (this.arregloPrueba.length < 10) {
+            console.log(this.intervalo);
+            if (this.datosAProcesar.rightHand || this.datosAProcesar.leftHand) {
+                this.enviar.socketConectado(this.datosAProcesar);
+            } else {
+                this.senaObtenida = '';
+            }
         }
+
     }
 
     setIntervalo(boolCheck: boolean) {
@@ -221,7 +274,12 @@ export class TraduccionComponent implements OnInit {
         if (boolCheck) {
             this.intervalo = 1000;
         } else {
+            //Para la prueba 10 seg  
+            // this.intervalo = 10000;
+            // para la parte de producción del sistema 3 seg
             this.intervalo = 3000;
         }
     }
+
+
 }

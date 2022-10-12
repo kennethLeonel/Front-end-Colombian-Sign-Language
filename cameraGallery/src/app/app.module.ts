@@ -15,7 +15,17 @@ import { AboutComponent } from './about/about.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
+//prueba
+import { FusionChartsModule } from 'angular-fusioncharts';
 
+import * as FusionCharts from 'fusioncharts';
+// Load Charts module
+import * as Charts from 'fusioncharts/fusioncharts.charts';
+// Load fusion theme
+import * as FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
+
+// Add dependencies to FusionChartsModule
+FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme)
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,6 +46,8 @@ import { HttpClientModule } from '@angular/common/http';
     CameraModule,
     ReactiveFormsModule,
     HttpClientModule,
+    FusionChartsModule,
+    
     
   ],
   providers: [

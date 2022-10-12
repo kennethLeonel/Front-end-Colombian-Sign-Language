@@ -13,16 +13,19 @@ export class UsuarioService {
 
 
   public crearUsuario(nombre: string, correo: string, password: string , rol: string):Observable<string> {
-    const url = 'http://localhost:8080/new-user';
+    const url = 'http://localhost:8080/signup';
 
     // return this.restService.post<any>(url,{array,nombreSena});
     return this.restService.post<any>(url,{
-      "nombre": nombre,
-      "correo": correo,
+      "name": nombre,
+      "username": correo,
       "password": password,
       "rol": rol
      
-    }, {'Accept': 'application/json', 'Content-Type': 'application/json'});  
+    }, {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    });  
   }
 
 }

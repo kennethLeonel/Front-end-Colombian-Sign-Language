@@ -2,7 +2,8 @@ import { LoginService } from './../services/login.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup,  FormBuilder,  Validators } from '@angular/forms';
-import {  User_data } from '../models/users';
+import {  User_authenticated } from '../models/users';
+
 
 
 
@@ -12,8 +13,8 @@ import {  User_data } from '../models/users';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  usuario :  User_data[] | undefined
-  token = '';
+ 
+  token :any;
   email : string ="";
   contra : string ="";
   angForm: FormGroup|any;
@@ -45,17 +46,12 @@ export class LoginComponent implements OnInit {
       res => {
         sessionStorage.setItem("email",this.email);
         sessionStorage.setItem("token",res.access_token);
-        //sessionStorage.setItem("first_name");
-        this.token=res.access_token;
+      
+        console.log(res.access_token);
+    
         this.router.navigate(['/home'], { queryParams: { id: '1' } });
 
-        // se obtiene el usuario por el token 
-        this.loginService.get_token(this.token).subscribe(
-          user=>{
-            this.usuario = user;  
-            sessionStorage.setItem("nombre", this.usuario[0].name);
-            sessionStorage.setItem('email', this.usuario[0].email);
-          } );
+
      });
   }
 }
