@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpParams } from '@angular/common/http';
 import { RestService } from '../rest.service';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -12,27 +13,31 @@ export class SenasService {
 
   public crearSena(arreglo : any, nombreSena :string) {
     const url = 'http://localhost:8080/new-signal';
-    let token = sessionStorage.getItem('token');
+    let token = String(sessionStorage.getItem('token'));
     console.log(token);
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`,
+      'Accept': 'application/json'
+    });
     return this.restService.post<any>(url,{
       "name": nombreSena,
       "photos":  arreglo 
-    }, {'Accept': 'application/json',
-      'Content-Type': 'application/json'
-     ,'Authorization': 'Bearer ' + token }); 
+    }, {headers: headers});
+     
   }
-  // este no se usa
-  public enviarSena(datos: any) {
-    const url = 'http://localhost:8080/predict-signal';
-    let token = sessionStorage.getItem('token');
-    // return this.restService.post<any>(url,{array,nombreSena});
-    return this.restService.post<any>(url,{
-      "coordenadas" : datos
-    }, {'Accept': 'application/json',
-     'Content-Type': 'application/json',
-      'Authorization': 'Bearer ' + token });
+  // // este no se usa
+  // public enviarSena(datos: any) {
+  //   const url = 'http://localhost:8080/predict-signal';
+  //   let token = sessionStorage.getItem('token');
+  //   // return this.restService.post<any>(url,{array,nombreSena});
+  //   return this.restService.post<any>(url,{
+  //     "coordenadas" : datos
+  //   }, {'Accept': 'application/json',
+  //    'Content-Type': 'application/json',
+  //     'Authorization': 'Bearer ' + token });
 
-  }
+  // }
 
   public getStatusTrainModel (){
     const url = 'http://localhost:8080/train-state';
@@ -60,7 +65,7 @@ export class SenasService {
     let token = sessionStorage.getItem('token');
     return this.restService.get<any>(url, {'Accept': 'application/json',
      'Content-Type': 'application/json',
-     'Authorization': 'Bearer ' + token });
+     'Authorization':  token });
      //Me envia la estructura de datos como epoch, media per  Epoch et quantitie des epochs este lo llamo cada 5 segundos
      //puedo revisar  training_state para mostrar una alerta segun como se encuentre 
     }

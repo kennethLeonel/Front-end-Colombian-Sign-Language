@@ -45,6 +45,7 @@ export class LoginComponent implements OnInit {
     this.loginService.login(this.email,this.contra).subscribe(
       res => {
         sessionStorage.setItem("email",this.email);
+       // sessionStorage.setItem("usuario",res.usuario);
         sessionStorage.setItem("token",res.access_token);
       
         console.log(res.access_token);

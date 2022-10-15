@@ -15,9 +15,9 @@ import { webSocket, WebSocketSubject } from 'rxjs/webSocket';
   providedIn: 'root'
 })
 export class EnviarCordenadasService {
+//predict-signal
 
-
-  private myWebSocket: WebSocketSubject<any> = webSocket('ws://localhost:8080/predict-signal');
+  private myWebSocket: WebSocketSubject<any> = webSocket('ws://localhost:8080/ws');
 
 
   public socketConectado(dato: any): void {
