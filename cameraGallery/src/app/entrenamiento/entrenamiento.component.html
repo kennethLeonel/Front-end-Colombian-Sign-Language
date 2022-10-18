@@ -1,15 +1,17 @@
 
 <h1>Entrenamiento del modelo</h1>
-<span> Recuerda que al dar click en el botón "Entrena" el proceso de entrenamiento es complejo</span>
 
-<button>
-    <a (click)="entrenar()">Entrena</a>
 
-    <div class="timer">
-        <p id="days"></p>
-        <p id="hours"></p>
-        <p id="minutes"></p>
-        <p id="seconds"></p>
-      </div>
-      
-</button>
+
+<button id="button_train" disabled>Entrenar</button>
+<div *ngIf="signsExist == true ; else elseBlock">
+  <span> Recuerda que al dar click en el botón "Entrena" el proceso de entrenamiento es complejo</span>
+  
+</div>
+
+
+<ng-template #elseBlock>
+  <span> No hay suficientes señas para entrenar el modelo</span>
+ 
+</ng-template>
+

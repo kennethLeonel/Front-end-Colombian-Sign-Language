@@ -42,30 +42,39 @@ export class SenasService {
   public getStatusTrainModel (){
     const url = 'http://localhost:8080/train-state';
     let token = sessionStorage.getItem('token');
-    return this.restService.get<any>(url, {'Accept': 'application/json',
-     'Content-Type': 'application/json',
-     'Authorization': 'Bearer ' + token });
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`,
+      'Accept': 'application/json'
+    });
+    return this.restService.get<any>(url, {headers: headers});
      //Me envia la lista de las señas que aún no se entrenan de nuestro dataset ,
      // si esta lista esta vacia pues le decimos que paila no puede entrenar,
      // pero si esta llenita que si entrene y le mostramos cuales son las señas nuevas
     }
   
-
-  public trainModel (){
+    //primera petición componente entrenamiento cuando se permite entrenar
+  public trainModel (){ 
     const url = 'http://localhost:8080/train';
     let token = sessionStorage.getItem('token');
-    return this.restService.get<any>(url, {'Accept': 'application/json',
-     'Content-Type': 'application/json',
-     'Authorization': 'Bearer ' + token });
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`,
+      'Accept': 'application/json'
+    });
+    return this.restService.get<any>(url, {headers: headers});
      //solo me envia un mensaje de que se activo el entrenamiento
   }
 
   public getTimeTrainModel (){
     const url = 'http://localhost:8080/train-info';
     let token = sessionStorage.getItem('token');
-    return this.restService.get<any>(url, {'Accept': 'application/json',
-     'Content-Type': 'application/json',
-     'Authorization':  token });
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`,
+      'Accept': 'application/json'
+    });
+    return this.restService.get<any>(url, {headers: headers});
      //Me envia la estructura de datos como epoch, media per  Epoch et quantitie des epochs este lo llamo cada 5 segundos
      //puedo revisar  training_state para mostrar una alerta segun como se encuentre 
     }
