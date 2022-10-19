@@ -3,6 +3,7 @@ import { SenasService } from '../services/senas/senas.service';
 import Swal from 'sweetalert2'
 
 
+
 @Component({
   selector: 'app-entrenamiento',
   templateUrl: './entrenamiento.component.html',
@@ -11,7 +12,7 @@ import Swal from 'sweetalert2'
 export class EntrenamientoComponent implements OnInit {
 
   // Variable that will hold the time of train our model to be able to show it in the view 
-  days: any;
+  
   hours: any;
   minutes: any
   seconds: any;
@@ -32,10 +33,10 @@ export class EntrenamientoComponent implements OnInit {
   botonEntrenar : any;
   
 
-  daysElement: any = document.getElementById("days");
-  hoursElement: any = document.getElementById("hours");
-  minutesElement: any = document.getElementById("minutes");
-  secondsElement: any = document.getElementById("seconds");
+
+  hoursElement: any ;
+  minutesElement: any;
+  secondsElement: any ;
 
 
 
@@ -46,15 +47,15 @@ export class EntrenamientoComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.senasService.getStatusTrainModel().subscribe(
-      res => {
-        console.log(res);
-        // mIRAR QUE NOS MANDA RES PARA INICIALIZAR NUESTRO ARREGLO DE SEÑAS 
+    // this.senasService.getStatusTrainModel().subscribe(
+    //   res => {
+    //     console.log(res);
+    //     // mIRAR QUE NOS MANDA RES PARA INICIALIZAR NUESTRO ARREGLO DE SEÑAS 
 
-      });
+    //   });
 
       // prueba qeu funcione
-      //this.signsNoTrained.push("hola");
+      this.signsNoTrained.push("hola");
 
     if (this.signsNoTrained.length > 0) {
 
@@ -86,17 +87,17 @@ export class EntrenamientoComponent implements OnInit {
     this.botonEntrenar?.addEventListener("click", () => {
       console.log("click");
       this.botonEntrenar.disabled = true;
-      this.senasService.trainModel().subscribe(
-        res => {
-          console.log(res);
-          Swal.fire({
-            icon: 'success',
-            title: 'Entrenamiento en proceso',
-            text: 'El modelo se esta entrenando, por favor espere',
-          })
-        },
+      // this.senasService.trainModel().subscribe(
+      //   res => {
+      //     console.log(res);
+      //     Swal.fire({
+      //       icon: 'success',
+      //       title: 'Entrenamiento en proceso',
+      //       text: 'El modelo se esta entrenando, por favor espere',
+      //     })
+      //   },
 
-      );
+      // );
 
       let intervaLCall = setInterval(() => {
         if (this.callServiceTime() == false) {
@@ -115,33 +116,38 @@ export class EntrenamientoComponent implements OnInit {
 
   callServiceTime(): any {
    
-    this.senasService.getTimeTrainModel().subscribe(
-      res => {
-        console.log(res);
-        // mIRAR QUE NOS MANDA RES PARA INICIALIZAR NUESTRO ARREGLO DE SEÑAS 
-        this.structTime = res;
-        this.mean_time_execution = this.structTime.mean_time_execution;
-        this.epoch = this.structTime.epoch;
-        this.cant_epochs = this.structTime.cant_epochs;
-        this.training_state = this.structTime.training_state;
-      },
-    );
+    // this.senasService.getTimeTrainModel().subscribe(
+    //   res => {
+    //     console.log(res);
+    //     // mIRAR QUE NOS MANDA RES PARA INICIALIZAR NUESTRO ARREGLO DE SEÑAS 
+    //     this.structTime = res;
+    //     this.mean_time_execution = this.structTime.mean_time_execution;
+    //     this.epoch = this.structTime.epoch;
+    //     this.cant_epochs = this.structTime.cant_epochs;
+    //     this.training_state = this.structTime.training_state;
+    //   },
+    // );
+    // estimación * (cant_epochs - epoch)
+    //let time = this.mean_time_execution * (this.cant_epochs - this.epoch);
+    let time = 15742;
+
+    // convert seconds to hours minutes and seconds 
+   let timeInterval = setInterval(() => { 
+    
+    
+    this.takeTime(time = time -1)
+    }, 1000);
+   
 
     // prueba qeu funcione
-    //this.training_state = 3;
+    this.training_state = 2;
 
     /* 
         PROCESSING = 1
         FINISHED = 2
         ERROR = 3
     */
-    if (this.training_state == 1) {
-      Swal.fire({
-        icon: 'info',
-        title: 'Entrenamiento en proceso',
-        text: 'El modelo se esta entrenando, por favor espere',
-      });
-    } else if (this.training_state == 2) {
+    if (this.training_state == 2) {
       Swal.fire({
         icon: 'success',
         title: 'Entrenamiento finalizado',
@@ -160,6 +166,24 @@ export class EntrenamientoComponent implements OnInit {
     
     }
   }
+
+  takeTime(time: any) {
+    this.hours = Math.floor(time / 3600);
+    this.minutes = Math.floor((time / 60)  - (this.hours * 60));
+    this.seconds = time % 60;
+    console.log(this.hours, this.minutes, this.seconds);
+    this.hoursElement = document.getElementById("hours");
+    this.minutesElement = document.getElementById("minutes");
+    this.secondsElement = document.getElementById("seconds");
+
+    this.hoursElement.innerHTML = this.hours + " Horas";
+    this.minutesElement.innerHTML =  this.minutes + " Minutos";
+    this.secondsElement.innerHTML =  this.seconds + " Segundos";
+  
+  }
+
+
+
 
 
 }

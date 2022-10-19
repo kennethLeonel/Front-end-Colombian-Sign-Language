@@ -4,9 +4,15 @@
 
 
 <button id="button_train" disabled>Entrenar</button>
+<div class="flexTimer">
+  <p id="hours"></p>
+  <p id="minutes"></p>
+  <p id="seconds"></p>
+</div>
 <div *ngIf="signsExist == true ; else elseBlock">
   <span> Recuerda que al dar click en el botón "Entrena" el proceso de entrenamiento es complejo</span>
-  
+    <br>
+
 </div>
 
 
