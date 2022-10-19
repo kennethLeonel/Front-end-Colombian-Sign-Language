@@ -12,7 +12,7 @@ import Swal from 'sweetalert2'
 export class EntrenamientoComponent implements OnInit {
 
   // Variable that will hold the time of train our model to be able to show it in the view 
-  
+
   hours: any;
   minutes: any
   seconds: any;
@@ -30,13 +30,13 @@ export class EntrenamientoComponent implements OnInit {
   // DOM Manipulation
 
   //element button to make a evenet click
-  botonEntrenar : any;
-  
+  botonEntrenar: any;
 
 
-  hoursElement: any ;
+
+  hoursElement: any;
   minutesElement: any;
-  secondsElement: any ;
+  secondsElement: any;
 
 
 
@@ -47,26 +47,26 @@ export class EntrenamientoComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.senasService.getStatusTrainModel().subscribe(
-    //   res => {
-    //     console.log(res);
-    //     // mIRAR QUE NOS MANDA RES PARA INICIALIZAR NUESTRO ARREGLO DE SEÑAS 
+    this.senasService.getStatusTrainModel().subscribe(
+      res => {
+        console.log(res);
+        // mIRAR QUE NOS MANDA RES PARA INICIALIZAR NUESTRO ARREGLO DE SEÑAS 
 
-    //   });
+      });
 
-      // prueba qeu funcione
-      this.signsNoTrained.push("hola");
+    // prueba qeu funcione
+    this.signsNoTrained.push("hola");
 
     if (this.signsNoTrained.length > 0) {
 
-     this.signsExist = true;
+      this.signsExist = true;
       this.signsNoTrained.forEach((value: any) => {
         this.stringSigns += value + " ";
       });
       if (this.signsExist == true) {
         this.botonEntrenar = document.getElementById("button_train");
         this.botonEntrenar.disabled = false;
-        console.log("este es",this.botonEntrenar);
+        console.log("este es", this.botonEntrenar);
         Swal.fire({
           icon: 'success',
           title: 'Señas por entrenar',
@@ -87,27 +87,27 @@ export class EntrenamientoComponent implements OnInit {
     this.botonEntrenar?.addEventListener("click", () => {
       console.log("click");
       this.botonEntrenar.disabled = true;
-      // this.senasService.trainModel().subscribe(
-      //   res => {
-      //     console.log(res);
-      //     Swal.fire({
-      //       icon: 'success',
-      //       title: 'Entrenamiento en proceso',
-      //       text: 'El modelo se esta entrenando, por favor espere',
-      //     })
-      //   },
+      this.senasService.trainModel().subscribe(
+        res => {
+          console.log(res);
+          Swal.fire({
+            icon: 'success',
+            title: 'Entrenamiento en proceso',
+            text: 'El modelo se esta entrenando, por favor espere',
+          })
+        },
 
-      // );
+      );
 
       let intervaLCall = setInterval(() => {
         if (this.callServiceTime() == false) {
           clearInterval(intervaLCall);
-        }else{
+        } else {
           this.callServiceTime()
         }
-        
+
       }, 5000);
-      
+
     }
     );
 
@@ -115,38 +115,39 @@ export class EntrenamientoComponent implements OnInit {
 
 
   callServiceTime(): any {
-   
-    // this.senasService.getTimeTrainModel().subscribe(
-    //   res => {
-    //     console.log(res);
-    //     // mIRAR QUE NOS MANDA RES PARA INICIALIZAR NUESTRO ARREGLO DE SEÑAS 
-    //     this.structTime = res;
-    //     this.mean_time_execution = this.structTime.mean_time_execution;
-    //     this.epoch = this.structTime.epoch;
-    //     this.cant_epochs = this.structTime.cant_epochs;
-    //     this.training_state = this.structTime.training_state;
-    //   },
-    // );
+
+    this.senasService.getTimeTrainModel().subscribe(
+      res => {
+        console.log(res);
+        // mIRAR QUE NOS MANDA RES PARA INICIALIZAR NUESTRO ARREGLO DE SEÑAS 
+        this.structTime = res;
+        this.mean_time_execution = this.structTime.mean_time_execution;
+        this.epoch = this.structTime.epoch;
+        this.cant_epochs = this.structTime.cant_epochs;
+        this.training_state = this.structTime.training_state;
+      },
+    );
     // estimación * (cant_epochs - epoch)
-    //let time = this.mean_time_execution * (this.cant_epochs - this.epoch);
-    let time = 15742;
+    let time = this.mean_time_execution * (this.cant_epochs - this.epoch);
+
+    // prueba que funcione 
+    // let time = 15742;
+     //this.training_state = 1;
 
     // convert seconds to hours minutes and seconds 
-   let timeInterval = setInterval(() => { 
-    
-    
-    this.takeTime(time = time -1)
+    let timeInterval = setInterval(() => {
+      if(this.training_state ==2 || this.training_state ==3){
+        clearInterval(timeInterval);
+      }else{
+        this.takeTime(time = time - 1);
+      }
     }, 1000);
-   
-
-    // prueba qeu funcione
-    this.training_state = 2;
-
     /* 
         PROCESSING = 1
         FINISHED = 2
         ERROR = 3
     */
+
     if (this.training_state == 2) {
       Swal.fire({
         icon: 'success',
@@ -163,13 +164,16 @@ export class EntrenamientoComponent implements OnInit {
       });
       this.botonEntrenar.disabled = false;
       return false;
-    
+
     }
+
+
+
   }
 
   takeTime(time: any) {
     this.hours = Math.floor(time / 3600);
-    this.minutes = Math.floor((time / 60)  - (this.hours * 60));
+    this.minutes = Math.floor((time / 60) - (this.hours * 60));
     this.seconds = time % 60;
     console.log(this.hours, this.minutes, this.seconds);
     this.hoursElement = document.getElementById("hours");
@@ -177,9 +181,9 @@ export class EntrenamientoComponent implements OnInit {
     this.secondsElement = document.getElementById("seconds");
 
     this.hoursElement.innerHTML = this.hours + " Horas";
-    this.minutesElement.innerHTML =  this.minutes + " Minutos";
-    this.secondsElement.innerHTML =  this.seconds + " Segundos";
-  
+    this.minutesElement.innerHTML = this.minutes + " Minutos";
+    this.secondsElement.innerHTML = this.seconds + " Segundos";
+
   }
 
 
