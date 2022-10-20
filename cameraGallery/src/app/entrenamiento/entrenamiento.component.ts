@@ -31,9 +31,6 @@ export class EntrenamientoComponent implements OnInit {
 
   //element button to make a evenet click
   botonEntrenar: any;
-
-
-
   hoursElement: any;
   minutesElement: any;
   secondsElement: any;

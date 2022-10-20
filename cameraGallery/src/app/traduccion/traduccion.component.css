@@ -39,3 +39,10 @@
 .output_canvas{
     border: 2px solid rgb(46, 43, 43);
 }
+
+/* boton */
+.buttonPronostic{
+    display: block;
+    margin: 0 auto;
+
+}

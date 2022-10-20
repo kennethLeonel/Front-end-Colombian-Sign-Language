@@ -1,4 +1,22 @@
-<fusioncharts 
-    [chartConfig]=chartConfig
-    [dataSource]=dataSource >
-</fusioncharts>
+
+
+
+<div *ngIf="existData == true ; else elseTemplate"  >
+    <h1> Resultados obtenidos</h1>
+    <div class="chartData">
+        <fusioncharts  
+        [chartConfig]=chartConfig
+        [dataSource]=dataSource >
+        </fusioncharts>
+    </div>
+
+</div>
+
+<ng-template #elseTemplate>
+    <h1> No hay resultados</h1>
+    <div class="alignContentEmpty">
+        <p> Se te devolvera al apartado de traducción muchas gracias</p>
+    </div>
+</ng-template>
+
+

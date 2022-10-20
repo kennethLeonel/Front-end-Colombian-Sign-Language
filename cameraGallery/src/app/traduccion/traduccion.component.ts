@@ -36,8 +36,10 @@ export class TraduccionComponent implements OnInit {
     //Para la prueba 10 seg
     // intervalo = 10000;
     intervalo = 3000;
-   
     arregloPrueba: any = [];
+    // DOM
+    buttonPronostic: any;
+
 
     constructor(
         private senaService: SenasService,
@@ -56,30 +58,57 @@ export class TraduccionComponent implements OnInit {
             for (let key in mensaje) {
                 this.datosObtenidos.push({ sena: key, peso: mensaje[key] });
             }
-
+            console.log(this.datosObtenidos.length);
             // probar con lo de pasar datos al otro componente
-           
-                if (this.arregloPrueba.length < 10) {
-                    this.arregloPrueba.push(this.datosObtenidos[0]);
-                }
-                if (this.arregloPrueba.length == 10) {
-                    // this.arregloPrueba.push(-1);
-                    let navigationExtras: NavigationExtras = {
-                        state: {
-                            dato: this.arregloPrueba
-
-                        }
-                    };
-                    this.camera.stop();
-                    speechSynthesis.cancel();
-                    this.router.navigate(['/configuracion'], navigationExtras);
-                  
-
-                }
-
-
-             
             
+           
+
+            if (this.arregloPrueba.length > 0) {
+                this.buttonPronostic.disabled = false;
+            }else{
+                this.buttonPronostic.disabled = true;
+            }
+
+            if (this.arregloPrueba.length == 30){
+                this.arregloPrueba.shift();
+            }
+
+            this.arregloPrueba.push(this.datosObtenidos[0]);
+            console.log(this.arregloPrueba.length);
+
+            this.buttonPronostic.addEventListener('click', () => {
+                let navigationExtras: NavigationExtras = {
+                    state: {
+                        dato: this.arregloPrueba
+                    }
+                };
+                clearInterval(captureInterval)
+                speechSynthesis.cancel();
+                this.camera.stop();
+                this.router.navigate(['/configuracion'], navigationExtras);
+            });
+
+            // if (this.arregloPrueba.length < 10) {
+            //     this.arregloPrueba.push(this.datosObtenidos[0]);
+            // }
+            // if (this.arregloPrueba.length == 10) {
+            //     this.arregloPrueba.push(-1);
+            //     let navigationExtras: NavigationExtras = {
+            //         state: {
+            //             dato: this.arregloPrueba
+
+            //         }
+            //     };
+            //     this.camera.stop();
+            //     speechSynthesis.cancel();
+            //     this.router.navigate(['/configuracion'], navigationExtras);
+
+
+            // }
+
+
+
+
             // finaliza parte prueba 
 
 
@@ -111,11 +140,13 @@ export class TraduccionComponent implements OnInit {
             }
         };
         enviar.getmessages(functi);
-        setInterval(() => this.sendMessage(), this.intervalo);
+       let captureInterval = setInterval(() => this.sendMessage(), this.intervalo);
     }
 
     ngOnInit() {
-
+        
+        this.buttonPronostic = document.getElementById('button_pronostic');
+        this.buttonPronostic.disabled = true;
         // this.helper.prueba();
         this.Checkbox = document.getElementsByClassName('mute')[0];
         this.Checkbox.addEventListener('change', () => {
@@ -258,14 +289,14 @@ export class TraduccionComponent implements OnInit {
     }
 
     sendMessage() {
-        if (this.arregloPrueba.length < 10) {
+       
             console.log(this.intervalo);
             if (this.datosAProcesar.rightHand || this.datosAProcesar.leftHand) {
                 this.enviar.socketConectado(this.datosAProcesar);
             } else {
                 this.senaObtenida = '';
             }
-        }
+      
 
     }
 
