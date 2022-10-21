@@ -31,8 +31,8 @@ export class ConfiguracionesComponent implements OnInit {
 				});
 			}
 			this.chartConfig = {
-				width: '700',
-				height: '400',
+				width: '80%',
+				height: '600',
 				type: 'column2d',
 				dataFormat: 'json',
 			};
@@ -40,7 +40,7 @@ export class ConfiguracionesComponent implements OnInit {
 			this.dataSource = {
 				chart: {
 					caption: 'Precisión de la red neuronal',
-					xAxisName: 'Intento',
+					xAxisName: 'Seña realizada',
 					yAxisName: 'Precisión',
 					numberSuffix: '%',
 					theme: 'fusion',

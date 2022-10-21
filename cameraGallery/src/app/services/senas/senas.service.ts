@@ -21,23 +21,12 @@ export class SenasService {
 			url,
 			{
 				name: nombreSena,
-				photos: arreglo,
+				images: arreglo,
 			},
 			{ headers: headers }
 		);
 	}
-	// // este no se usa
-	// public enviarSena(datos: any) {
-	//   const url = 'http://localhost:8080/predict-signal';
-	//   let token = sessionStorage.getItem('token');
-	//   // return this.restService.post<any>(url,{array,nombreSena});
-	//   return this.restService.post<any>(url,{
-	//     "coordenadas" : datos
-	//   }, {'Accept': 'application/json',
-	//    'Content-Type': 'application/json',
-	//     'Authorization': 'Bearer ' + token });
 
-	// }
 
 	public getStatusTrainModel() {
 		const url = 'http://localhost:8080/train-state';
@@ -66,8 +55,14 @@ export class SenasService {
 		//solo me envia un mensaje de que se activo el entrenamiento
 	}
 
-	public getTimeTrainModel() {
-		const url = 'http://localhost:8080/train-info';
+	public getTimeTrainModel(id_training?: any) {
+		let url: string;
+		if (id_training == null) {
+			url = 'http://localhost:8080/training-info'
+		}
+		else {
+			url = 'http://localhost:8080/training-info/' + id_training;
+		}
 		let token = sessionStorage.getItem('token');
 		const headers = new HttpHeaders({
 			'Content-Type': 'application/json',

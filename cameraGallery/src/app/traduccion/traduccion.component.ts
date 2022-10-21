@@ -6,9 +6,9 @@ import { EnviarCordenadasService } from '../services/socket/enviar-cordenadas.se
 import { Camera } from '@mediapipe/camera_utils';
 import { drawConnectors, drawLandmarks } from '@mediapipe/drawing_utils/';
 import {
-    HAND_CONNECTIONS,
-    Holistic,
-    POSE_CONNECTIONS
+	HAND_CONNECTIONS,
+	Holistic,
+	POSE_CONNECTIONS
 } from '@mediapipe/holistic';
 import { WebSocketSubject } from 'rxjs/webSocket';
 
@@ -33,7 +33,7 @@ export class TraduccionComponent implements OnInit {
 	intervalo = 3000;
 	arregloPrueba: any = [];
 	// DOM
-	buttonPronostic: any;
+	buttonPronostic: HTMLElement | any;
 
 	constructor(
 		private senaService: SenasService,
@@ -57,8 +57,10 @@ export class TraduccionComponent implements OnInit {
 
 			if (this.arregloPrueba.length > 0) {
 				this.buttonPronostic.disabled = false;
+				this.buttonPronostic.setAttribute('class', 'btn btn-primary buttonPronostic');
 			} else {
 				this.buttonPronostic.disabled = true;
+				this.buttonPronostic.setAttribute('class', 'btn btn-secondary buttonPronostic');
 			}
 
 			if (this.arregloPrueba.length == 30) {
@@ -80,24 +82,7 @@ export class TraduccionComponent implements OnInit {
 				this.router.navigate(['/configuracion'], navigationExtras);
 			});
 
-			// if (this.arregloPrueba.length < 10) {
-			//     this.arregloPrueba.push(this.datosObtenidos[0]);
-			// }
-			// if (this.arregloPrueba.length == 10) {
-			//     this.arregloPrueba.push(-1);
-			//     let navigationExtras: NavigationExtras = {
-			//         state: {
-			//             dato: this.arregloPrueba
 
-			//         }
-			//     };
-			//     this.camera.stop();
-			//     speechSynthesis.cancel();
-			//     this.router.navigate(['/configuracion'], navigationExtras);
-
-			// }
-
-			// finaliza parte prueba
 
 			if (this.datosObtenidos[0].peso >= 95) {
 				if (this.datosObtenidos[0].sena === 'Sabado') {
@@ -136,6 +121,7 @@ export class TraduccionComponent implements OnInit {
 	ngOnInit() {
 		this.buttonPronostic = document.getElementById('button_pronostic');
 		this.buttonPronostic.disabled = true;
+		this.buttonPronostic.setAttribute('class', 'btn btn-secondary buttonPronostic');
 		// this.helper.prueba();
 		this.Checkbox = document.getElementsByClassName('mute')[0];
 		this.Checkbox.addEventListener('change', () => {

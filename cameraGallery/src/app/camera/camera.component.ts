@@ -131,6 +131,13 @@ export class CameraComponent implements AfterViewInit {
 				text: 'No se especifica el nombre de la seña para procesar!',
 				confirmButtonText: 'Aceptar',
 			});
+		} else if (this.captures.length<= 10){	
+			Swal.fire({
+				icon: 'error',
+				title: 'Oops...',
+				text: 'Se necesitan al menos 10 imagenes para procesar!',
+				confirmButtonText: 'Aceptar',
+			}) 
 		} else {
 			this.getBase64StringFromDataURL(this.captures);
 
