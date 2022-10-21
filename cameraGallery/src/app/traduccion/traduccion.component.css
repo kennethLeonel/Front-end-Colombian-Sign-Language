@@ -1,48 +1,47 @@
-.grid{
-    display: grid;
-    grid-template-areas: "container container sena"
-                         "container container audioSena"; 
-    gap: 15px;
-    padding: 20px;
-    height: 100vh;
+.grid {
+	display: grid;
+	grid-template-areas:
+		"container container sena"
+		"container container audioSena";
+	gap: 15px;
+	padding: 20px;
+	height: 100vh;
 }
 
-.grid > .container{
-    grid-area: container;
+.grid > .container {
+	grid-area: container;
 
-    border: 1px solid rgb(46, 43, 43);
+	border: 1px solid rgb(46, 43, 43);
 }
-.grid > .sena{
-    grid-area: sena;
-    border: 1px solid rgb(46, 43, 43);
+.grid > .sena {
+	grid-area: sena;
+	border: 1px solid rgb(46, 43, 43);
 }
-.grid > .audioSena{
-    grid-area: audioSena;
-    border: 1px solid rgb(46, 43, 43);
-}
-
-.flexVideo{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap:10px;
-
-}
-.centrar{
-    text-align: center;
-}
-.input_video{
-    border: 2px solid rgb(46, 43, 43);
+.grid > .audioSena {
+	grid-area: audioSena;
+	border: 1px solid rgb(46, 43, 43);
 }
 
-.output_canvas{
-    border: 2px solid rgb(46, 43, 43);
+.flexVideo {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+}
+.centrar {
+	text-align: center;
+}
+.input_video {
+	border: 2px solid rgb(46, 43, 43);
+}
+
+.output_canvas {
+	border: 2px solid rgb(46, 43, 43);
 }
 
 /* boton */
-.buttonPronostic{
-    display: block;
-    margin: 0 auto;
-
+.buttonPronostic {
+	display: block;
+	margin: 0 auto;
 }

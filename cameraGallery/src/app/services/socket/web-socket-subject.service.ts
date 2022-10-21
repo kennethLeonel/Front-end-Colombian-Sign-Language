@@ -8,7 +8,7 @@
 
 // export class WebSocketSubjectService {
 //   constructor() {}
-  
+
 //   private subject?: Rj.Subject<MessageEvent>;
 
 //   public connect(url:any): Rj.Subject<MessageEvent> {
@@ -27,14 +27,13 @@
 //       wsc.onmessage = obs.next.bind(obs);
 //       wsc.onerror = obs.error.bind(obs);
 //       wsc.onclose = obs.complete.bind(obs);
-      
 
 //       return wsc.close.bind(wsc);
 //       // return true;
 //     });
 
 //     let observer = {
-     
+
 //       next: (data: string) => {
 //         if (wsc.readyState === WebSocket.OPEN) {
 //          console.log(observable);

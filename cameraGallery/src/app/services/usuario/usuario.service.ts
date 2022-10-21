@@ -1,39 +1,37 @@
-import { HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { environment } from 'src/environments/environment';
-import { RestService } from '../rest.service';
 import { Observable } from 'rxjs';
+import { RestService } from '../rest.service';
 
 @Injectable({
-  providedIn: 'root'
+	providedIn: 'root',
 })
 export class UsuarioService {
+	constructor(private restService: RestService) {}
 
-  constructor(private restService: RestService) { }
+	public crearUsuario(
+		nombre: string,
+		correo: string,
+		password: string,
+		rol: string
+	): Observable<string> {
+		const url = 'http://localhost:8080/signup';
 
-
-  public crearUsuario(nombre: string, correo: string, password: string , rol: string):Observable<string> {
-    const url = 'http://localhost:8080/signup';
-
-    // return this.restService.post<any>(url,{array,nombreSena});
-    return this.restService.post<any>(url,{
-      "name": nombre,
-      "username": correo,
-      "password": password,
-      "rol": rol
-     
-    }, {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    });  
-  }
-
+		// return this.restService.post<any>(url,{array,nombreSena});
+		return this.restService.post<any>(
+			url,
+			{
+				name: nombre,
+				username: correo,
+				password: password,
+				rol: rol,
+			},
+			{
+				Accept: 'application/json',
+				'Content-Type': 'application/json',
+			}
+		);
+	}
 }
-
-
-
-
-
 
 // @Injectable({
 //   providedIn: 'root'
@@ -112,12 +110,9 @@ export class UsuarioService {
 //     }
 //   }
 
-
-
 //   ///////////////////////////////////////
 //   /////    Autenticación
 //   ///////////////////////////////////////
-
 
 //   public login(usuario: string, password: string) {
 //     const formHeaders = new HttpHeaders();
@@ -138,6 +133,5 @@ export class UsuarioService {
 //     return this.restService.post('http://localhost:8080/logout', '',
 //       { withCredentials: true });
 //   }
-
 
 // }

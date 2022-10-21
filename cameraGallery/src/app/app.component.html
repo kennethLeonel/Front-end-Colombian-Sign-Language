@@ -17,68 +17,75 @@
 		</div>
 	</nav> -->
 
-	
-    <nav class="navbar navbar-expand-lg navegacion " *ngIf=" usuarioLogueado == false	; else elseBlock">
-        <div class="container-fluid ">
-          <a class="navbar-brand" (click)="home()"> 
-            <img src="../assets/images/logo-senas.svg" alt="logo sistema"  class="img-fluid logo">
-          </a>
-          <button class="navbar-toggler hamburguesa" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon  "></span> <!-- icono de hamburguesa -->
-          </button>
-          <div class="collapse navbar-collapse flex-grow-0 l1 " id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0 menu text-right ">
-              <li class="nav-item">
-				<a  class="nav-link  " (click)="irATraduccion()"> <i class="fa-solid fa-video"></i> Traducción </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link "(click)="irALogin()"> <i class="fa-solid fa-user"></i>Login</a>
-              </li>
-              <li class="nav-item">
-                <a  class="nav-link "(click)="irARegistro()"><i class="fa-solid fa-file-signature"></i> Registro</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
+
+<nav class="navbar navbar-expand-lg navegacion " *ngIf=" usuarioLogueado == false	; else elseBlock">
+	<div class="container-fluid ">
+		<a class="navbar-brand" (click)="home()">
+			<img src="../assets/images/logo-senas.svg" alt="logo sistema" class="img-fluid logo">
+		</a>
+		<button class="navbar-toggler hamburguesa" type="button" data-bs-toggle="collapse"
+			data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+			aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon  "></span> <!-- icono de hamburguesa -->
+		</button>
+		<div class="collapse navbar-collapse flex-grow-0 l1 " id="navbarSupportedContent">
+			<ul class="navbar-nav me-auto mb-2 mb-lg-0 menu text-right ">
+				<li class="nav-item">
+					<a class="nav-link  " (click)="irATraduccion()"> <i class="fa-solid fa-video"></i> Traducción </a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link " (click)="irALogin()"> <i class="fa-solid fa-user"></i>Login</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link " (click)="irARegistro()"><i class="fa-solid fa-file-signature"></i> Registro</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</nav>
 
 
 
-	
-	<ng-template #elseBlock>
-		<nav class="navbar navbar-expand-lg navegacion ">
-			<div class="container-fluid ">
-			  <a class="navbar-brand" (click)="home()"> 
-				<img src="../assets/images/logo-senas.svg" alt="logo sistema"  class="img-fluid logo">
-			  </a>
-			  <button class="navbar-toggler hamburguesa" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+
+<ng-template #elseBlock>
+	<nav class="navbar navbar-expand-lg navegacion ">
+		<div class="container-fluid ">
+			<a class="navbar-brand" (click)="home()">
+				<img src="../assets/images/logo-senas.svg" alt="logo sistema" class="img-fluid logo">
+			</a>
+			<button class="navbar-toggler hamburguesa" type="button" data-bs-toggle="collapse"
+				data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+				aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon  "></span> <!-- icono de hamburguesa -->
-			  </button>
-			  <div class="collapse navbar-collapse flex-grow-0 l1 " id="navbarSupportedContent">
+			</button>
+			<div class="collapse navbar-collapse flex-grow-0 l1 " id="navbarSupportedContent">
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0 menu text-right ">
-					
 
-				  <li class="nav-item">
-					<a  class="nav-link  " (click)="irATraduccion()"> <i class="fa-solid fa-video"></i> Traducción </a>
-				  </li>
-				  <li class="nav-item">
-					<a class="nav-link "(click)="irACaptura()"> <i class="fa-solid fa-camera"></i>Captura</a>
-				  </li>
-				  <li class="nav-item">
-					<a  class="nav-link "(click)="irAConfiguracion()"> <i class="fa-solid fa-gears"></i>Configuraciones</a>
-				  </li>
-				  <li class="nav-item">
-					<a  class="nav-link "(click)="irAEntrenamiento()"><i class="fa-solid fa-filter"></i>Entrenamiento</a>
-				  </li>
-				<!-- falta función deslogeo -->
+
+					<li class="nav-item">
+						<a class="nav-link  " (click)="irATraduccion()"> <i class="fa-solid fa-video"></i> Traducción
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link " (click)="irACaptura()"> <i class="fa-solid fa-camera"></i>Captura</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link " (click)="irAConfiguracion()"> <i
+								class="fa-solid fa-gears"></i>Configuraciones</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link " (click)="irAEntrenamiento()"><i
+								class="fa-solid fa-filter"></i>Entrenamiento</a>
+					</li>
+					<!-- falta función deslogeo -->
 				</ul>
-			  </div>
 			</div>
-		  </nav>
+		</div>
+	</nav>
 
-	</ng-template>
-	
-		<!-- <nav class="navegacion navbar navbar-expand-md" > 
+</ng-template>
+
+<!-- <nav class="navegacion navbar navbar-expand-md" > 
 			<div>
 				<img src="../assets/images/logo-senas.svg" alt="Logo del sistema" class="logo" (click)="home()">
 			
@@ -93,8 +100,7 @@
 		</nav> -->
 
 
-	
 
-	<router-outlet></router-outlet>
-	<!-- <app-camera></app-camera>	 -->
 
+<router-outlet></router-outlet>
+<!-- <app-camera></app-camera>	 -->

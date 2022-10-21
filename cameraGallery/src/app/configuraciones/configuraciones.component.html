@@ -1,12 +1,7 @@
-
-
-
-<div *ngIf="existData == true ; else elseTemplate"  >
+<div *ngIf="existData == true ; else elseTemplate">
     <h1> Resultados obtenidos</h1>
     <div class="chartData">
-        <fusioncharts  
-        [chartConfig]=chartConfig
-        [dataSource]=dataSource >
+        <fusioncharts [chartConfig]=chartConfig [dataSource]=dataSource>
         </fusioncharts>
     </div>
 
@@ -15,8 +10,6 @@
 <ng-template #elseTemplate>
     <h1> No hay resultados</h1>
     <div class="alignContentEmpty">
-        <p> Se te devolvera al apartado de traducción muchas gracias</p>
+        <p>Se te redireccionará a la pestaña de traducción. Muchas gracias.</p>
     </div>
 </ng-template>
-
-

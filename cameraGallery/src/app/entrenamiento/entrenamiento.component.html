@@ -1,4 +1,3 @@
-
 <h1>Entrenamiento del modelo</h1>
 
 
@@ -11,13 +10,12 @@
 </div>
 <div *ngIf="signsExist == true ; else elseBlock">
   <span> Recuerda que al dar click en el botón "Entrena" el proceso de entrenamiento es complejo</span>
-    <br>
+  <br>
 
 </div>
 
 
 <ng-template #elseBlock>
   <span> No hay suficientes señas para entrenar el modelo</span>
- 
-</ng-template>
 
+</ng-template>

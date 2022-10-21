@@ -1,36 +1,41 @@
-
- <div class="contenedor-login">
+<div class="contenedor-login">
     <div class="formulario-login">
         <h2>Regístrate</h2>
-        <form action="" method="post" class="formulario-login-form"  [formGroup]="angForm" novalidate>
+        <form action="" method="post" class="formulario-login-form" [formGroup]="angForm" novalidate>
             <div class="input-container">
                 <label for="nombre">Nombre: </label>
-                <input  type="text" formControlName="nombre" id="nombre" placeholder="Nombre" required [(ngModel)]="nombre"  >
+                <input type="text" formControlName="nombre" id="nombre" placeholder="Nombre" required
+                    [(ngModel)]="nombre">
             </div>
-            <div *ngIf="angForm.controls['nombre'].invalid && (angForm.controls['nombre'].dirty || angForm.controls['nombre'].touched)" class="alert alert-danger">
+            <div *ngIf="angForm.controls['nombre'].invalid && (angForm.controls['nombre'].dirty || angForm.controls['nombre'].touched)"
+                class="alert alert-danger">
                 <div *ngIf="angForm.controls['nombre'].errors.required">
-                  Nombre es obligatorio.
+                    Nombre es obligatorio.
                 </div>
             </div>
-         
+
             <div class="input-container">
                 <label for="email">Email: </label>
-                <input type="email" formControlName="email" id="email" placeholder="Email" required  [(ngModel)]="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
+                <input type="email" formControlName="email" id="email" placeholder="Email" required [(ngModel)]="email"
+                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
             </div>
-            <div *ngIf="angForm.controls['email'].invalid && (angForm.controls['email'].dirty || angForm.controls['email'].touched)" class="alert alert-danger">
+            <div *ngIf="angForm.controls['email'].invalid && (angForm.controls['email'].dirty || angForm.controls['email'].touched)"
+                class="alert alert-danger">
                 <div *ngIf="angForm.controls['email'].errors.required">
-                  Email  es obligatorio con su arroba y .com .
+                    Email es obligatorio con su arroba y .com .
                 </div>
             </div>
 
 
             <div class="input-container">
                 <label for="contra">Contraseña</label>
-                <input type="password" formControlName="contra" id="contra" placeholder="Contraseña"   [(ngModel)]="contra">
+                <input type="password" formControlName="contra" id="contra" placeholder="Contraseña"
+                    [(ngModel)]="contra">
             </div>
-            <div *ngIf="angForm.controls['contra'].invalid && (angForm.controls['contra'].dirty || angForm.controls['contra'].touched)" class="alert alert-danger">
+            <div *ngIf="angForm.controls['contra'].invalid && (angForm.controls['contra'].dirty || angForm.controls['contra'].touched)"
+                class="alert alert-danger">
                 <div *ngIf="angForm.controls['contra'].errors.required">
-                Contraseña  es obligatorio.
+                    Contraseña es obligatorio.
                 </div>
             </div>
             <!-- <div class="input-container">
@@ -40,28 +45,30 @@
 
             <div class="input-radio-container">
                 <div>
-                    <input type="radio" id="admin" formControlName="rol" value="admin"  [(ngModel)]="rolA" >
+                    <input type="radio" id="admin" formControlName="rol" value="admin" [(ngModel)]="rolA">
                     <label for="admin">Administrador </label>
                 </div>
-         
+
                 <div>
-                    <input type="radio" id="contribuidor" formControlName="rol" value="usuarioVerificado" [(ngModel)]="rolC"  >
+                    <input type="radio" id="contribuidor" formControlName="rol" value="usuarioVerificado"
+                        [(ngModel)]="rolC">
                     <label for="contribuidor">Contribuidor </label>
                 </div>
-               
+
             </div>
-            <div *ngIf="angForm.controls['rol'].invalid && (angForm.controls['rol'].dirty || angForm.controls['rol'].touched)" class="alert alert-danger">
+            <div *ngIf="angForm.controls['rol'].invalid && (angForm.controls['rol'].dirty || angForm.controls['rol'].touched)"
+                class="alert alert-danger">
                 <div *ngIf="angForm.controls['rol'].errors.required">
-                Rol  es obligatorio.
+                    Rol es obligatorio.
                 </div>
             </div>
 
 
 
 
-            <div >
-                <input type="submit" value="Registrarse" class="boton"  (click)="registrarse()"
-                [disabled]="angForm.pristine || angForm.invalid" />
+            <div>
+                <input type="submit" value="Registrarse" class="boton" (click)="registrarse()"
+                    [disabled]="angForm.pristine || angForm.invalid" />
             </div>
         </form>
         <!-- <p>Form value: {{ angForm.value | json }}</p> -->
@@ -69,4 +76,3 @@
         <!-- <p>Falta un campo rectifica: {{ angForm.status | json }}</p> -->
     </div>
 </div>
-  

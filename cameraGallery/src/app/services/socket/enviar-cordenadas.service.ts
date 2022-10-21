@@ -8,46 +8,32 @@ import { webSocket, WebSocketSubject } from 'rxjs/webSocket';
 //   messageContent: string;
 // }
 
-
-
-
 @Injectable({
-  providedIn: 'root'
+	providedIn: 'root',
 })
 export class EnviarCordenadasService {
-//predict-signal
+	//predict-signal // o ws
 
-  private myWebSocket: WebSocketSubject<any> = webSocket('ws://localhost:8080/ws');
+	private myWebSocket: WebSocketSubject<any> = webSocket(
+		'ws://localhost:8080/predict-signal'
+	);
 
+	public socketConectado(dato: any): void {
+		//Enviar al servidor
+		this.myWebSocket.next(dato);
+	}
 
-  public socketConectado(dato: any): void {
-    //Enviar al servidor
-    this.myWebSocket.next(dato);
-  }
+	public getmessages(functi: any) {
+		// var mensaje :any | undefined;
+		return this.myWebSocket.subscribe(
+			(msg) => functi(msg, this.myWebSocket),
+			// Llamado cada vez que hay un mensaje del servidor
+			(err) => console.log(err),
+			// Llamado si la API de WebSocket señala algún tipo of error
+			() => console.log('complete')
+			// Llamado cuando la conexión está cerrada (por cualquier motivo)
+		);
+	}
 
-  public getmessages(functi: any) {
-    // var mensaje :any | undefined;
-    return this.myWebSocket.subscribe(
-      msg => functi(msg, this.myWebSocket),
-      // Llamado cada vez que hay un mensaje del servidor     
-      err => console.log(err),
-      // Llamado si la API de WebSocket señala algún tipo of error     
-      () => console.log('complete')
-      // Llamado cuando la conexión está cerrada (por cualquier motivo)   
-    );
-
-  }
-
-
-
-  // object.error({ code: 4000, reason: 'I think our app just broke!' });
-
-
+	// object.error({ code: 4000, reason: 'I think our app just broke!' });
 }
-
-
-
-
-
-
-

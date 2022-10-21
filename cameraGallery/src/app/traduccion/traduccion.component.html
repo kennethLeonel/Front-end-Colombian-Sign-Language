@@ -1,44 +1,36 @@
+<main class="grid">
 
-    <main class="grid"> 
-
-      <div class="container"> 
-        <div class="flexVideo">
-          <div>
-            <h2 class="centrar">Video</h2>
-            <video autoplay="true" class="input_video" width="640px" height="480px"></video>  
-          </div>
-           <div>
-            <h2  class="centrar">Vista Mediapipe</h2>
-            <canvas class="output_canvas" width="640px" height="480px"></canvas>
-           </div>
-        </div>      
+  <div class="container">
+    <div class="flexVideo">
+      <div>
+        <h2 class="centrar">Video</h2>
+        <video autoplay="true" class="input_video" width="640px" height="480px"></video>
       </div>
-      <div class="sena">
-        <h2  class="centrar">Seña resultado</h2>
-        <p class="senaRealizada">   {{senaObtenida}} </p>
-
-       
-        <!-- <div>
-          <button class="boton" (click)="enviarSena()">Guardar</button>
-        </div> -->
-        <!-- <div>
-          <button class="boton" (click)="sendMessage()">Guardar</button>
-        </div> -->
+      <div>
+        <h2 class="centrar">Vista Mediapipe</h2>
+        <canvas class="output_canvas" width="640px" height="480px"></canvas>
       </div>
-
-      <div class="audioSena"> 
-        <h2  class="centrar">Audio de la seña</h2>
-        <a (click)="reproducirAudio(senaObtenida)"><i class="fa-solid fa-microphone fa-2x"></i> Audio</a>
-        <br>
-        <label for="mute">
-          <input type="checkbox" name="mute" class="mute"   > 
-          Silenciar
-        </label>
-        <div>
-          <button id="button_pronostic" class="btn btn-primary buttonPronostic "> Ver prónosotico</button>
-        </div>
-      </div>
+    </div>
+  </div>
+  <div class="sena">
+    <h2 class="centrar">Seña resultado</h2>
+    <p class="senaRealizada"> {{senaObtenida}} </p>
 
 
-    </main>
+  </div>
 
+  <div class="audioSena">
+    <h2 class="centrar">Audio de la seña</h2>
+    <a (click)="reproducirAudio(senaObtenida)"><i class="fa-solid fa-microphone fa-2x"></i> Audio</a>
+    <br>
+    <label for="mute">
+      <input type="checkbox" name="mute" class="mute">
+      Silenciar
+    </label>
+    <div>
+      <button id="button_pronostic" class="btn btn-primary buttonPronostic "> Ver estadística</button>
+    </div>
+  </div>
+
+
+</main>

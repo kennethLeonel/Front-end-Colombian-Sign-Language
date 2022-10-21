@@ -1,50 +1,42 @@
-
 .hamburguesa {
-  background-color: #3873cc;
+	background-color: #3873cc;
 }
-.navegacion{
-  display: flex;
-  justify-content: space-between;
-  background-color: #607EAA;
+.navegacion {
+	display: flex;
+	justify-content: space-between;
+	background-color: #607eaa;
 }
-.logo{
-
-  width: 90%;
-
+.logo {
+	width: 90%;
 }
 
-ul{
-  display: flex;
-  justify-content: space-between;
-  gap: 15px;
-  padding: 10px;
+ul {
+	display: flex;
+	justify-content: space-between;
+	gap: 15px;
+	padding: 10px;
 }
 
-ul li a{
-
-  text-decoration: none;
-  font-size: 18px;
-  font-weight: bold;
-  transition: 1s all;
-  cursor: pointer;
+ul li a {
+	text-decoration: none;
+	font-size: 18px;
+	font-weight: bold;
+	transition: 1s all;
+	cursor: pointer;
 }
-ul li a:hover{
-  color: #1C3879;
-}
-
-
-
-ul li a i{
-  margin-right: 5px;
+ul li a:hover {
+	color: #1c3879;
 }
 
+ul li a i {
+	margin-right: 5px;
+}
 
 /* Media query */
-@media screen and (min-width: 1100px){
-  .logo{
-
-    width: 50%;
-  /* margin-top: 10px; 
+@media screen and (min-width: 1100px) {
+	.logo {
+		width: 50%;
+		/* margin-top: 10px; 
   margin-left: 10px; */
-  }
+	}
 }
