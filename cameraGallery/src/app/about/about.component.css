@@ -1,5 +1,36 @@
+/* USER MANUAL */
+.formas{
+	display: flex;	
+	gap : 20px;
+	justify-content: center;
+	width: 100%;
+}
+
+.formasCorrecta h4{
+	color: green;
+	text-align: center;
+}
+.formasCorrecta h4 i{
+	color: green;
+}
+.formasIncorrecta h4{
+	color: red;
+	text-align: center;
+}
+.formasIncorrecta h4 i{
+	color: red;
+}
+.imageStep1{
+	width: 80%;
+}
+.imageStep1 img{
+	width: 500px;
+}
+p{
+	margin-top: 10px;
+}
 section {
-	margin-top: 60px;
+	margin-top: 40px;
 }
 
 .padreCards {
@@ -54,5 +85,15 @@ section {
 @media screen and (max-width: 1200px) {
 	.padreCards {
 		flex-direction: column;
+	}
+	.imageStep1 img{
+		width: 350px;
+	}
+	.formas{
+		flex-direction: column;
+		gap : 20px;
+		justify-content: center;
+		width: 100%;
+		align-items: center;
 	}
 }

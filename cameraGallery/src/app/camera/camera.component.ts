@@ -6,6 +6,7 @@ import {
 import Swal from 'sweetalert2';
 import { SenasService } from '../services/senas/senas.service';
 
+
 @Component({
 	selector: 'app-camera',
 	templateUrl: './camera.component.html',
@@ -100,7 +101,7 @@ export class CameraComponent implements AfterViewInit {
 		console.log(this.captures);
 	}
 	subir(nombresena: string) {
-		this.inputText = nombresena;
+		this.inputText = nombresena.charAt(0).toUpperCase() + nombresena.slice(1);
 		console.log(this.inputText);
 	}
 
@@ -118,6 +119,7 @@ export class CameraComponent implements AfterViewInit {
 
 	procesar() {
 		if (this.captures.length <= 0) {
+
 			Swal.fire({
 				icon: 'error',
 				title: 'Oops...',
@@ -131,7 +133,7 @@ export class CameraComponent implements AfterViewInit {
 				text: 'No se especifica el nombre de la seña para procesar!',
 				confirmButtonText: 'Aceptar',
 			});
-		} else if (this.captures.length<= 10){	
+		} else if (this.captures.length< 10){	
 			Swal.fire({
 				icon: 'error',
 				title: 'Oops...',
@@ -160,4 +162,5 @@ export class CameraComponent implements AfterViewInit {
 				});
 		}
 	}
+
 }

@@ -9,7 +9,7 @@
 					id="nombreSeña" #nombre>
 
 			</div>
-			<button type="submit" (click)="subir(nombre.value)" class="btn btn-primary">click</button>
+			<button type="submit" (click)="subir(nombre.value)" class="btn btn-primary">Procesar nombre</button>
 		</div>
 
 	</div>
@@ -40,7 +40,7 @@
 	<!-- </div> -->
 
 	<div id="lista-sena">
-		<p>EL VALOR DEL INPUT ES {{inputText}}</p>
+		<p>Nombre seña procesada "{{inputText}}"</p>
 		<!-- Acá se muestra la lista de imágenes -->
 		<ul class="list-unstyled">
 			<li *ngFor="let src of captures; let idx = index" (click)="setPhoto(idx)">

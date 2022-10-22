@@ -29,6 +29,7 @@
     "@types/jsonfile": "^6.1.0",
     "angular-fusioncharts": "^4.0.0",
     "bootstrap": "^5.2.1",
+    "canvas-confetti": "^1.5.1",
     "device-detector-js": "^3.0.3",
     "fusioncharts": "^3.19.0",
     "gsap": "^3.11.1",
